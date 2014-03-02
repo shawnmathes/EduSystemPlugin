@@ -9,9 +9,6 @@ import java.util.ArrayList;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
-
-
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -37,183 +34,148 @@ import javax.swing.SwingUtilities;
 
 import Operation.ReadFile;
 
-
-
 public class MainGUI extends JFrame implements ActionListener {
 
-	
 	static int c;
-	
+
 	String beginPeriod;
-	String endPeriod ;
-	//String NQFfilename ;
-	
-	
-	 JButton Button = new JButton("Student");
-	  JButton Button2 = new JButton("Instructor");
-	  JButton Button3 = new JButton("Administrator");
-	  
-	  
-	   JLabel label1;
-	   
-	   JLabel patientAgeLabel;
-	   JLabel patientGenderLabel;
-	   JLabel patientAttriRecordTimeLabel;
-	   
-	   JTextField patientAgeText;
-	   JTextField patientGenderText;
-	   JTextField patientAttriRecordTimeText;
-	   
-	   
-	   BufferedImage myPicture;
-	 
-	
+	String endPeriod;
+	// String NQFfilename ;
+
+	JButton Button = new JButton("Student");
+	JButton Button2 = new JButton("Instructor");
+	JButton Button3 = new JButton("Administrator");
+
+	JLabel label1;
+
+	JLabel patientAgeLabel;
+	JLabel patientGenderLabel;
+	JLabel patientAttriRecordTimeLabel;
+
+	JTextField patientAgeText;
+	JTextField patientGenderText;
+	JTextField patientAttriRecordTimeText;
+
+	BufferedImage myPicture;
+
 	JMenuBar menu;
-	 JMenu file;
-	 JMenuItem closeMenu;
-      
-	 String studentfile = "C:\\Users\\Shawn Mathes\\workspace\\EduSystemPlugin\\studentManageFile.txt";
-	 String commonfilelist = "C:\\Users\\Shawn Mathes\\workspace\\EduSystemPlugin\\commonClassList";
+	JMenu file;
+	JMenuItem closeMenu;
+
+	String studentfile = "C:\\Users\\Shawn Mathes\\workspace\\EduSystemPlugin\\studentManageFile.txt";
+	String commonfilelist = "C:\\Users\\Shawn Mathes\\workspace\\EduSystemPlugin\\commonClassList";
+
 	// String adminlist = "AdminClassList";
-	 
-	 
-	 
-	
-	
-	 public MainGUI() {		
-		 
-		  menu = new JMenuBar();
-		  file = new JMenu("Class Enrollment System");
-		  closeMenu = new JMenuItem("Close");
-		  closeMenu.addActionListener(this);
 
-		  Button.addActionListener(this);
-		  Button2.addActionListener(this);
-		  Button3.addActionListener(this);
-		
-		  
-		  JPanel closePanel = new JPanel();
-		  JPanel closePanel2 = new JPanel();
-		  closePanel.setLayout(new FlowLayout());
+	public MainGUI() {
 
-		  closePanel.add(Button);
-		  closePanel.add(Button2);
-		  closePanel.add(Button3);
-		  
+		menu = new JMenuBar();
+		file = new JMenu("Class Enrollment System");
+		closeMenu = new JMenuItem("Close");
+		closeMenu.addActionListener(this);
 
-		File pic=new File("C:\\Users\\Shawn Mathes\\workspace\\EduSystemPlugin\\umkc.jpg");
-		   
-        Icon icon=new ImageIcon(pic.toString());
-	
-		 JLabel picLabel = new JLabel(icon);
-		
-		
-		 
-		  //Font font=new  Font("Serief", Font.BOLD, 22);
-		  //picLabel.setFont(font);
-		//  picLabel.setForeground(Color.RED);
-	        
-	      
-		  closePanel2.add(picLabel);
-		
-		  this.add(closePanel2,BorderLayout.SOUTH);
-		  this.add(closePanel, BorderLayout.CENTER);
-		  this.add(menu, BorderLayout.NORTH);
-		  menu.add(file);
-		  file.add(closeMenu);
-		  this.setBounds(200, 200, 400, 400);
-		  this.setVisible(true);
-		  this.setResizable(false);
-		  this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		
-		
-	
-	
-			
+		Button.addActionListener(this);
+		Button2.addActionListener(this);
+		Button3.addActionListener(this);
+
+		JPanel closePanel = new JPanel();
+		JPanel closePanel2 = new JPanel();
+		closePanel.setLayout(new FlowLayout());
+
+		closePanel.add(Button);
+		closePanel.add(Button2);
+		closePanel.add(Button3);
+
+		File pic = new File(
+				"C:\\Users\\Shawn Mathes\\workspace\\EduSystemPlugin\\umkc.jpg");
+
+		Icon icon = new ImageIcon(pic.toString());
+
+		JLabel picLabel = new JLabel(icon);
+
+		// Font font=new Font("Serief", Font.BOLD, 22);
+		// picLabel.setFont(font);
+		// picLabel.setForeground(Color.RED);
+
+		closePanel2.add(picLabel);
+
+		this.add(closePanel2, BorderLayout.SOUTH);
+		this.add(closePanel, BorderLayout.CENTER);
+		this.add(menu, BorderLayout.NORTH);
+		menu.add(file);
+		file.add(closeMenu);
+		this.setBounds(200, 200, 400, 400);
+		this.setVisible(true);
+		this.setResizable(false);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 	}
-	
-	
-	 public void actionPerformed1(ActionEvent e) {
-		 		
-		  System.exit(0);
-		 }	
+
+	public void actionPerformed1(ActionEvent e) {
+
+		System.exit(0);
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		 if(e.getSource()==Button)
-		 {
-			 System.out.println("you have chosen student option");
-			  JFrame frame = new JFrame("Student Access");
-		        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		        
-		        ReadFile readfile = new ReadFile();
-		        ArrayList <String> commonfilelistArray = new ArrayList();
-		        commonfilelistArray = readfile.ReadFile(commonfilelist);
-		        
-		        String[] startInit = new String[commonfilelistArray.size()];
-		        startInit = commonfilelistArray.toArray(startInit);
-		        
-		        /*
-		        String send = "";
-		        for(int op=0;op<startInit.length;op++)
-		        {
-		        	if(!"".equals(startInit[op])){
-		        	String []temp = startInit[op].split("\\[");
-		        	String []temp2 = temp[1].split("\\]");
-		        	send = send + temp2[0]+",";
-		        	}
-		        }
-		        
-		        String [] startInitTrue = send.split(",");
-		        */
-		        
-		        
-		        StudentGUI dlg = new StudentGUI(new JFrame(), "Student Account", startInit);
-			 
-		 }
-		 if(e.getSource()==Button2)
-		 {
-			 System.out.println("you have chosen instructor option");
-			  JFrame frame = new JFrame("Instructor Access");
-		        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		        
-		        ReadFile readfile = new ReadFile();
-		        ArrayList <String> insfilelistArray = new ArrayList();
-		        insfilelistArray = readfile.ReadFile(commonfilelist);
+		if (e.getSource() == Button) {
+			System.out.println("you have chosen student option");
+			JFrame frame = new JFrame("Student Access");
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		      
+			ReadFile readfile = new ReadFile();
+			ArrayList<String> commonfilelistArray = new ArrayList();
+			commonfilelistArray = readfile.ReadFile(commonfilelist);
 
-		        String[] startInit1 = new String[insfilelistArray.size()];
-		        startInit1 = insfilelistArray.toArray(startInit1);
-		        
-		       
-		        InstructorGUI dlg = new InstructorGUI(new JFrame(), "Instructor Account", startInit1);
-		 }
-		 if(e.getSource()==Button3)
-		 {
-			 System.out.println("you have chosen administrator option");
-			  JFrame frame = new JFrame("Admin Access");
-		        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		        
-		        ReadFile readfile = new ReadFile();
-		        ArrayList <String> adminfilelistArray = new ArrayList();
-		        adminfilelistArray = readfile.ReadFile(commonfilelist);
-		        
-		        String[] startInit = new String[adminfilelistArray.size()];
-		        startInit = adminfilelistArray.toArray(startInit);
+			String[] startInit = new String[commonfilelistArray.size()];
+			startInit = commonfilelistArray.toArray(startInit);
 
-		        AdminGUI dlg = new AdminGUI(new JFrame(), "Admin Account", startInit);
-			 
-		 }
-		 
+			/*
+			 * String send = ""; for(int op=0;op<startInit.length;op++) {
+			 * if(!"".equals(startInit[op])){ String []temp =
+			 * startInit[op].split("\\["); String []temp2 =
+			 * temp[1].split("\\]"); send = send + temp2[0]+","; } }
+			 * 
+			 * String [] startInitTrue = send.split(",");
+			 */
+
+			StudentGUI dlg = new StudentGUI(new JFrame(), "Student Account",
+					startInit);
+
+		}
+		if (e.getSource() == Button2) {
+			System.out.println("you have chosen instructor option");
+			JFrame frame = new JFrame("Instructor Access");
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+			ReadFile readfile = new ReadFile();
+			ArrayList<String> insfilelistArray = new ArrayList();
+			insfilelistArray = readfile.ReadFile(commonfilelist);
+
+			String[] startInit1 = new String[insfilelistArray.size()];
+			startInit1 = insfilelistArray.toArray(startInit1);
+
+			InstructorGUI dlg = new InstructorGUI(new JFrame(),
+					"Instructor Account", startInit1);
+		}
+		if (e.getSource() == Button3) {
+			System.out.println("you have chosen administrator option");
+			JFrame frame = new JFrame("Admin Access");
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+			ReadFile readfile = new ReadFile();
+			ArrayList<String> adminfilelistArray = new ArrayList();
+			adminfilelistArray = readfile.ReadFile(commonfilelist);
+
+			String[] startInit = new String[adminfilelistArray.size()];
+			startInit = adminfilelistArray.toArray(startInit);
+
+			AdminGUI dlg = new AdminGUI(new JFrame(), "Admin Account",
+					startInit);
+
+		}
+
 	}
-	
-	
-	
-	
-	
-	
 
 }

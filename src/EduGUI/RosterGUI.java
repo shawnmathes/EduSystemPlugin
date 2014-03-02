@@ -31,59 +31,45 @@ import javax.swing.event.ListSelectionListener;
 import Exception.WarningBox;
 import Operation.ReadFile;
 import Operation.WriteFile;
+
 public class RosterGUI extends JDialog implements ActionListener {
 
-	
-	 JList list;
-	
-	 
-	
-	  
-	  
-	
-  public RosterGUI(JFrame parent, String title, String [] message) {
-    super(parent, title, true);
-    if (parent != null) {
-      Dimension parentSize = parent.getSize(); 
-      Point p = parent.getLocation(); 
-    }
-    
-    
-    list = new JList(message);
+	JList list;
 
-    //Add list
-    list.addListSelectionListener(new SelectionHandler());
-    JScrollPane jsp = new JScrollPane(list);
-    jsp.setSize(100, 100);
-    
-    
+	public RosterGUI(JFrame parent, String title, String[] message) {
+		super(parent, title, true);
+		if (parent != null) {
+			Dimension parentSize = parent.getSize();
+			Point p = parent.getLocation();
+		}
 
-   
-    getContentPane().add(jsp,BorderLayout.CENTER);
-    setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-    pack(); 
-    setBounds(200, 200, 400, 400);
-    setVisible(true);
+		list = new JList(message);
 
-  }
-  public void actionPerformed(ActionEvent e1) {
-	  
+		// Add list
+		list.addListSelectionListener(new SelectionHandler());
+		JScrollPane jsp = new JScrollPane(list);
+		jsp.setSize(100, 100);
 
-		 }
+		getContentPane().add(jsp, BorderLayout.CENTER);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		pack();
+		setBounds(200, 200, 400, 400);
+		setVisible(true);
 
+	}
 
-  
-  
-  private class SelectionHandler implements ListSelectionListener {
+	public void actionPerformed(ActionEvent e1) {
 
-      @Override
-      public void valueChanged(ListSelectionEvent e) {
-          if (!e.getValueIsAdjusting()) {
-              System.out.println(Arrays.toString(list.getSelectedValues()));
-          }
-      }
-  }
-  
+	}
 
-  
+	private class SelectionHandler implements ListSelectionListener {
+
+		@Override
+		public void valueChanged(ListSelectionEvent e) {
+			if (!e.getValueIsAdjusting()) {
+				System.out.println(Arrays.toString(list.getSelectedValues()));
+			}
+		}
+	}
+
 }

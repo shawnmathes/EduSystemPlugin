@@ -32,69 +32,54 @@ import EduGUI.ViewSyllabusGUI.SelectionHandler;
 import Exception.WarningBox;
 import Operation.ReadFile;
 import Operation.WriteFile;
+
 public class ViewSyllabusGUI extends JDialog implements ActionListener {
 
-	
-	 JList list;
-	 ArrayList<String> syllabusInfo = new ArrayList<String>();
-	 
-     String filename="";
-	  
-	  
-	
-  public ViewSyllabusGUI(JFrame parent, String title, String className) {
-    super(parent, title, true);
-    if (parent != null) {
-      Dimension parentSize = parent.getSize(); 
-      Point p = parent.getLocation(); 
-    }
-    
+	JList list;
+	ArrayList<String> syllabusInfo = new ArrayList<String>();
 
-    
-    
-   ReadFile readfile = new ReadFile();
-   syllabusInfo = readfile.ReadFile(className);
-  
-   String[] startInit = new String[syllabusInfo.size()];
-   startInit = syllabusInfo.toArray(startInit);
+	String filename = "";
 
-   //Add list
-   list = new JList(startInit);
-   list.addListSelectionListener(new SelectionHandler());
-   JScrollPane jsp = new JScrollPane(list);
-   jsp.setSize(100, 100);
-	   
-   
- 
-    
-   getContentPane().add(jsp,BorderLayout.CENTER);
-   setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-   pack(); 
-   setBounds(200, 200, 400, 400);
+	public ViewSyllabusGUI(JFrame parent, String title, String className) {
+		super(parent, title, true);
+		if (parent != null) {
+			Dimension parentSize = parent.getSize();
+			Point p = parent.getLocation();
+		}
 
-    setVisible(true);
+		ReadFile readfile = new ReadFile();
+		syllabusInfo = readfile.ReadFile(className);
 
-  }
-  public void actionPerformed(ActionEvent e1) {
-	  
-	 
+		String[] startInit = new String[syllabusInfo.size()];
+		startInit = syllabusInfo.toArray(startInit);
 
-  }
+		// Add list
+		list = new JList(startInit);
+		list.addListSelectionListener(new SelectionHandler());
+		JScrollPane jsp = new JScrollPane(list);
+		jsp.setSize(100, 100);
 
+		getContentPane().add(jsp, BorderLayout.CENTER);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		pack();
+		setBounds(200, 200, 400, 400);
 
-  
-  
-  public class SelectionHandler implements ListSelectionListener {
+		setVisible(true);
 
-	    @Override
-	    public void valueChanged(ListSelectionEvent e) {
-	        if (!e.getValueIsAdjusting()) {
-	            System.out.println(Arrays.toString(list.getSelectedValues()));
-	        }
-	    }
 	}
-  
 
-  
+	public void actionPerformed(ActionEvent e1) {
+
+	}
+
+	public class SelectionHandler implements ListSelectionListener {
+
+		@Override
+		public void valueChanged(ListSelectionEvent e) {
+			if (!e.getValueIsAdjusting()) {
+				System.out.println(Arrays.toString(list.getSelectedValues()));
+			}
+		}
+	}
+
 }
-

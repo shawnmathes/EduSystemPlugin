@@ -10,12 +10,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class WriteFile {
-	
-	public void write(ArrayList<String> arraylist,String filename)
-	{
+
+	public void write(ArrayList<String> arraylist, String filename) {
 		FileWriter fw = null;
-		File file =new File(filename);
-		
+		File file = new File(filename);
+
 		try {
 			fw = new FileWriter(file.getAbsoluteFile());
 		} catch (IOException e1) {
@@ -24,12 +23,11 @@ public class WriteFile {
 		}
 		BufferedWriter bw = new BufferedWriter(fw);
 		Boolean isFirstLine = true;
-		for(int i =0;i<arraylist.size();i++)
-		{
+		for (int i = 0; i < arraylist.size(); i++) {
 			try {
 				String item = arraylist.get(i);
-				if ((item!=null)&&(item.length()>0)){
-					if (isFirstLine){
+				if ((item != null) && (item.length() > 0)) {
+					if (isFirstLine) {
 						isFirstLine = false;
 					} else {
 						bw.newLine();
@@ -41,25 +39,20 @@ public class WriteFile {
 				e.printStackTrace();
 			}
 		}
-		
+
 		try {
 			bw.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
-	
-	
-	
-	
-	
-	public void writeString(String text,String filename)
-	{
+
+	public void writeString(String text, String filename) {
 		FileWriter fw = null;
-		File file =new File(filename);
-		
+		File file = new File(filename);
+
 		try {
 			fw = new FileWriter(file.getAbsoluteFile());
 		} catch (IOException e1) {
@@ -67,80 +60,73 @@ public class WriteFile {
 			e1.printStackTrace();
 		}
 		BufferedWriter bw = new BufferedWriter(fw);
-		
-			try {
-				bw.write(text);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		
-		
+
+		try {
+			bw.write(text);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		try {
 			bw.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
-	
-	
-	public void append(String statement,String filename)
-	{
-		File file =new File(filename);
-		
+
+	public void append(String statement, String filename) {
+		File file = new File(filename);
+
 		FileWriter fileWritter = null;
 		try {
-			fileWritter = new FileWriter(file.getName(),true);
+			fileWritter = new FileWriter(file.getName(), true);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        BufferedWriter bufferWritter = new BufferedWriter(fileWritter);
-        try {
-			bufferWritter.write("\n"+statement);
+		BufferedWriter bufferWritter = new BufferedWriter(fileWritter);
+		try {
+			bufferWritter.write("\n" + statement);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        try {
+		try {
 			bufferWritter.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
-	
-	public void writeWhenEmpty(String statement,String filename)
-	{
-		File file =new File(filename);
-		
+
+	public void writeWhenEmpty(String statement, String filename) {
+		File file = new File(filename);
+
 		FileWriter fileWritter = null;
 		try {
-			fileWritter = new FileWriter(file.getName(),true);
+			fileWritter = new FileWriter(file.getName(), true);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        BufferedWriter bufferWritter = new BufferedWriter(fileWritter);
-        try {
-			bufferWritter.write("\n"+statement);
+		BufferedWriter bufferWritter = new BufferedWriter(fileWritter);
+		try {
+			bufferWritter.write("\n" + statement);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        try {
+		try {
 			bufferWritter.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
-	
-
-
 
 }
