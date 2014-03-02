@@ -52,7 +52,7 @@
             <command
                   commandId="EduSystemPlugin.commands.sampleCommand"
                   icon="icons/sample.gif"
-                  tooltip="Say hello world"
+                  tooltip="Open class enrollment system"
                   id="EduSystemPlugin.toolbars.sampleCommand">
             </command>
          </toolbar>
