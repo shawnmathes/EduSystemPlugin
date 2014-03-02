@@ -30,6 +30,7 @@ import javax.swing.event.ListSelectionListener;
 
 import EduGUI.ViewSyllabusGUI.SelectionHandler;
 import Exception.WarningBox;
+import Operation.Configuration;
 import Operation.ReadFile;
 import Operation.WriteFile;
 
@@ -48,7 +49,7 @@ public class ViewSyllabusGUI extends JDialog implements ActionListener {
 		}
 
 		ReadFile readfile = new ReadFile();
-		syllabusInfo = readfile.ReadFile(className);
+		syllabusInfo = readfile.ReadFile(Configuration.getDataRoot() + className);
 
 		String[] startInit = new String[syllabusInfo.size()];
 		startInit = syllabusInfo.toArray(startInit);

@@ -8,7 +8,6 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.SortedMap;
 import java.util.TreeMap;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -32,6 +31,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
+import Operation.Configuration;
 import Operation.ReadFile;
 
 public class MainGUI extends JFrame implements ActionListener {
@@ -62,8 +62,8 @@ public class MainGUI extends JFrame implements ActionListener {
 	JMenu file;
 	JMenuItem closeMenu;
 
-	String studentfile = "C:\\Users\\Shawn Mathes\\workspace\\EduSystemPlugin\\studentManageFile.txt";
-	String commonfilelist = "C:\\Users\\Shawn Mathes\\workspace\\EduSystemPlugin\\commonClassList";
+	String studentfile = Configuration.getDataRoot() + "studentManageFile.txt";
+	String commonfilelist = Configuration.getDataRoot() + "commonClassList";
 
 	// String adminlist = "AdminClassList";
 
@@ -86,8 +86,7 @@ public class MainGUI extends JFrame implements ActionListener {
 		closePanel.add(Button2);
 		closePanel.add(Button3);
 
-		File pic = new File(
-				"C:\\Users\\Shawn Mathes\\workspace\\EduSystemPlugin\\umkc.jpg");
+		File pic = new File("C:\\Users\\Shawn Mathes\\workspace\\EduSystemPlugin\\umkc.jpg");
 
 		Icon icon = new ImageIcon(pic.toString());
 

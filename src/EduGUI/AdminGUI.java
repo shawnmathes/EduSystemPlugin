@@ -32,6 +32,7 @@ import javax.swing.event.ListSelectionListener;
 
 import Confirmation.ConfirmationBox;
 import Exception.WarningBox;
+import Operation.Configuration;
 import Operation.ReadFile;
 import Operation.WriteFile;
 
@@ -44,8 +45,8 @@ public class AdminGUI extends JDialog implements ActionListener {
 	// JButton DropBtn;
 	JButton DeleteBtn;
 
-	String studentfilename = "studentManageFile.txt";
-	String commonFilename = "commonClassList";
+	String studentfilename = Configuration.getDataRoot() + "studentManageFile.txt";
+	String commonFilename = Configuration.getDataRoot() + "commonClassList";
 
 	ArrayList<String> currentClassList = new ArrayList<String>();
 

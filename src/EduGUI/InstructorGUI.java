@@ -29,6 +29,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import Exception.WarningBox;
+import Operation.Configuration;
 import Operation.ReadFile;
 import Operation.WriteFile;
 
@@ -43,7 +44,7 @@ public class InstructorGUI extends JDialog implements ActionListener {
 	JButton ViewRosterBtn;
 	JButton EditSyllabusBtn;
 
-	String filename = "studentManageFile.txt";
+	String filename = Configuration.getDataRoot() + "studentManageFile.txt";
 
 	ArrayList<String> StudentEnrollList = new ArrayList<String>();
 

@@ -29,6 +29,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import Exception.WarningBox;
+import Operation.Configuration;
 import Operation.ReadFile;
 import Operation.WriteFile;
 
@@ -37,8 +38,8 @@ public class AdminGUIList extends JDialog implements ActionListener {
 	JList list;
 	JButton DeleteBtn;
 
-	String commonfilename = "commonClassList";
-	String studentfilename = "studentManageFile.txt";
+	String commonfilename = Configuration.getDataRoot() + "commonClassList";
+	String studentfilename = Configuration.getDataRoot() + "studentManageFile.txt";
 
 	ArrayList<String> stuInfo = new ArrayList<String>();
 	ArrayList<String> stuInfo2 = new ArrayList<String>();

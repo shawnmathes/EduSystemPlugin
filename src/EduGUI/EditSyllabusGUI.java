@@ -29,6 +29,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import Exception.WarningBox;
+import Operation.Configuration;
 import Operation.ReadFile;
 import Operation.WriteFile;
 
@@ -50,7 +51,7 @@ public class EditSyllabusGUI extends JDialog implements ActionListener {
 			Point p = parent.getLocation();
 		}
 
-		filename = className;
+		filename = Configuration.getDataRoot() + className;
 
 		// Add button
 		JPanel buttonPane = new JPanel();
