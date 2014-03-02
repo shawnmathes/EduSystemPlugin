@@ -72,8 +72,8 @@ public class MainGUI extends JFrame implements ActionListener {
 	 JMenu file;
 	 JMenuItem closeMenu;
       
-	 String studentfile = "studentManageFile.txt";
-	 String commonfilelist = "commonClassList";
+	 String studentfile = "C:\\Users\\Shawn Mathes\\workspace\\EduSystemPlugin\\studentManageFile.txt";
+	 String commonfilelist = "C:\\Users\\Shawn Mathes\\workspace\\EduSystemPlugin\\commonClassList";
 	// String adminlist = "AdminClassList";
 	 
 	 
@@ -101,7 +101,7 @@ public class MainGUI extends JFrame implements ActionListener {
 		  closePanel.add(Button3);
 		  
 
-		File pic=new File("./umkc.jpg");
+		File pic=new File("C:\\Users\\Shawn Mathes\\workspace\\EduSystemPlugin\\umkc.jpg");
 		   
         Icon icon=new ImageIcon(pic.toString());
 	
