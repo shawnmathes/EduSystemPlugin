@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import edusystemplugin.extensions.IEduData;
 import Operation.EduData;
 
 public class CommonClassService {
 
-	private static EduData eduData = new EduData();
+	private static IEduData eduData = new EduData();
 
 	public static ArrayList<String> getList() {
 		return eduData.getClassList();

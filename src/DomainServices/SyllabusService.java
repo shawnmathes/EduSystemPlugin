@@ -1,10 +1,11 @@
 package DomainServices;
 
+import edusystemplugin.extensions.IEduData;
 import Operation.EduData;
 
 public class SyllabusService {
 	
-	private static EduData eduData = new EduData();
+	private static IEduData eduData = new EduData();
 
 	public static String get(String className) {
 		return eduData.getSyllabus(className);
