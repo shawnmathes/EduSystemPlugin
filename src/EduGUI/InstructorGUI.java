@@ -1,8 +1,6 @@
 package EduGUI;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -22,6 +20,7 @@ import javax.swing.event.ListSelectionListener;
 import Exception.WarningBox;
 import Operation.StudentClassData;
 
+@SuppressWarnings("serial")
 public class InstructorGUI extends JDialog implements ActionListener {
 
 	JLabel studentIDLabel;
@@ -35,10 +34,6 @@ public class InstructorGUI extends JDialog implements ActionListener {
 
 	public InstructorGUI(JFrame parent, String title, String[] message) {
 		super(parent, title, true);
-		if (parent != null) {
-			Dimension parentSize = parent.getSize();
-			Point p = parent.getLocation();
-		}
 
 		// Add list
 		list = new JList(message);
@@ -69,6 +64,7 @@ public class InstructorGUI extends JDialog implements ActionListener {
 
 	}
 
+	@SuppressWarnings("unused")
 	@Override
 	public void actionPerformed(ActionEvent e) {
 

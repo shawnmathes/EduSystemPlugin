@@ -1,8 +1,6 @@
 package EduGUI;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
@@ -14,16 +12,13 @@ import javax.swing.JScrollPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+@SuppressWarnings("serial")
 public class RosterGUI extends JDialog implements ActionListener {
 
 	JList list;
 
 	public RosterGUI(JFrame parent, String title, String[] message) {
 		super(parent, title, true);
-		if (parent != null) {
-			Dimension parentSize = parent.getSize();
-			Point p = parent.getLocation();
-		}
 
 		list = new JList(message);
 

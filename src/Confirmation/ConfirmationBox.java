@@ -1,8 +1,6 @@
 package Confirmation;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -12,16 +10,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+@SuppressWarnings("serial")
 public class ConfirmationBox extends JDialog implements ActionListener {
 	public ConfirmationBox(JFrame parent, String title, String message) {
 		super(parent, title, true);
-		if (parent != null) {
-			Dimension parentSize = parent.getSize();
-			Point p = parent.getLocation();
-			// setLocation(100,100);
-			// setLocation(p.x + parentSize.width / 4, p.y + parentSize.height /
-			// 4);
-		}
 		JPanel messagePane = new JPanel();
 		messagePane.add(new JLabel(message));
 		getContentPane().add(messagePane);

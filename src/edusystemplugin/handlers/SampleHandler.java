@@ -31,6 +31,7 @@ public class SampleHandler extends AbstractHandler {
 		 * MessageDialog.openInformation( window.getShell(),
 		 * "Class Enrollment System", "Hello, Eclipse world");
 		 */
+		@SuppressWarnings("unused")
 		MainGUI intO = new MainGUI();
 		return null;
 	}

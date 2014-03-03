@@ -1,8 +1,6 @@
 package EduGUI;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -15,6 +13,7 @@ import javax.swing.JTextArea;
 
 import Operation.SyllabusData;
 
+@SuppressWarnings("serial")
 public class EditSyllabusGUI extends JDialog implements ActionListener {
 
 	JButton SaveBtn;
@@ -29,10 +28,6 @@ public class EditSyllabusGUI extends JDialog implements ActionListener {
 
 	public EditSyllabusGUI(JFrame parent, String title, String className) {
 		super(parent, title, true);
-		if (parent != null) {
-			Dimension parentSize = parent.getSize();
-			Point p = parent.getLocation();
-		}
 
 		this.className = className;
 

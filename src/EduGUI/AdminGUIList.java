@@ -21,6 +21,7 @@ import Exception.WarningBox;
 import Operation.CommonClassData;
 import Operation.StudentClassData;
 
+@SuppressWarnings("serial")
 public class AdminGUIList extends JDialog implements ActionListener {
 
 	JList list;
@@ -32,10 +33,6 @@ public class AdminGUIList extends JDialog implements ActionListener {
 
 	public AdminGUIList(JFrame parent, String title, String[] message) {
 		super(parent, title, true);
-		if (parent != null) {
-			Dimension parentSize = parent.getSize();
-			Point p = parent.getLocation();
-		}
 
 		list = new JList(message);
 
@@ -59,6 +56,7 @@ public class AdminGUIList extends JDialog implements ActionListener {
 
 	}
 
+	@SuppressWarnings("unused")
 	@Override
 	public void actionPerformed(ActionEvent e1) {
 
@@ -129,9 +127,7 @@ public class AdminGUIList extends JDialog implements ActionListener {
 
 						if (!update.equals("")) {
 							update = id + ":" + update;
-						} else if (update.equals("")) {
-							update = update;
-						}
+						} 
 
 						stuInfo2.set(j, update);
 						studentClassData.update(stuInfo2);

@@ -21,6 +21,7 @@ import Confirmation.ConfirmationBox;
 import Exception.WarningBox;
 import Operation.StudentClassData;
 
+@SuppressWarnings("serial")
 public class StudentGUIMyList extends JDialog implements ActionListener {
 
 	JLabel studentIDLabel;
@@ -34,10 +35,6 @@ public class StudentGUIMyList extends JDialog implements ActionListener {
 
 	public StudentGUIMyList(JFrame parent, String title, String message) {
 		super(parent, title, true);
-		if (parent != null) {
-			Dimension parentSize = parent.getSize();
-			Point p = parent.getLocation();
-		}
 
 		String[] data = { "" };
 		list = new JList(data);
@@ -85,6 +82,7 @@ public class StudentGUIMyList extends JDialog implements ActionListener {
 
 	}
 
+	@SuppressWarnings("unused")
 	@Override
 	public void actionPerformed(ActionEvent e1) {
 

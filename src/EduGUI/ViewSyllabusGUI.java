@@ -1,8 +1,6 @@
 package EduGUI;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -14,6 +12,7 @@ import javax.swing.JTextArea;
 
 import Operation.SyllabusData;
 
+@SuppressWarnings("serial")
 public class ViewSyllabusGUI extends JDialog implements ActionListener {
 
 	JTextArea area = new JTextArea(20, 30);
@@ -21,10 +20,6 @@ public class ViewSyllabusGUI extends JDialog implements ActionListener {
 
 	public ViewSyllabusGUI(JFrame parent, String title, String className) {
 		super(parent, title, true);
-		if (parent != null) {
-			Dimension parentSize = parent.getSize();
-			Point p = parent.getLocation();
-		}
 
 		SyllabusData syllabusData = new SyllabusData();
 		area.setText(syllabusData.get(className));

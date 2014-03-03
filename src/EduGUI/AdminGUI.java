@@ -1,8 +1,6 @@
 package EduGUI;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -25,6 +23,7 @@ import Operation.CommonClassData;
 import Operation.StudentClassData;
 import Operation.SyllabusData;
 
+@SuppressWarnings("serial")
 public class AdminGUI extends JDialog implements ActionListener {
 
 	JTextArea area = new JTextArea("Please enter the new course name:", 1, 33);
@@ -41,10 +40,6 @@ public class AdminGUI extends JDialog implements ActionListener {
 
 	public AdminGUI(JFrame parent, String title, String[] message) {
 		super(parent, title, true);
-		if (parent != null) {
-			Dimension parentSize = parent.getSize();
-			Point p = parent.getLocation();
-		}
 
 		// Add text and label
 		JPanel textPane = new JPanel();
@@ -82,6 +77,7 @@ public class AdminGUI extends JDialog implements ActionListener {
 
 	}
 
+	@SuppressWarnings("unused")
 	@Override
 	public void actionPerformed(ActionEvent e) {
 

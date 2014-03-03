@@ -21,6 +21,7 @@ import javax.swing.JTextField;
 
 import Operation.CommonClassData;
 
+@SuppressWarnings("serial")
 public class MainGUI extends JFrame implements ActionListener {
 
 	static int c;
@@ -93,9 +94,9 @@ public class MainGUI extends JFrame implements ActionListener {
 
 	}
 
+	@SuppressWarnings("unused")
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		CommonClassData commonClassData = new CommonClassData();
 		String[] startInit = getClassListAsArray();
 
 		if (e.getSource() == Button) {
