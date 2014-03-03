@@ -8,7 +8,6 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,7 +16,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingConstants;
 
 public class EDUInterface extends JFrame implements ActionListener {
 	/**
@@ -112,36 +112,36 @@ public class EDUInterface extends JFrame implements ActionListener {
 
 		// Start Button
 		startButton = new JButton("Start");
-		startButton.setVerticalTextPosition(AbstractButton.BOTTOM);
-		startButton.setHorizontalTextPosition(AbstractButton.CENTER);
+		startButton.setVerticalTextPosition(SwingConstants.BOTTOM);
+		startButton.setHorizontalTextPosition(SwingConstants.CENTER);
 		startButton.setActionCommand("start");
 		startButton.addActionListener(this);
 
 		// Add Packaged Item Button
 		addUPCButton = new JButton("Add UPC");
-		addUPCButton.setVerticalTextPosition(AbstractButton.BOTTOM);
-		addUPCButton.setHorizontalTextPosition(AbstractButton.CENTER);
+		addUPCButton.setVerticalTextPosition(SwingConstants.BOTTOM);
+		addUPCButton.setHorizontalTextPosition(SwingConstants.CENTER);
 		addUPCButton.setActionCommand("addUPC");
 		addUPCButton.addActionListener(this);
 
 		// Add Builk Item Button
 		addBICButton = new JButton("Add BIC");
-		addBICButton.setVerticalTextPosition(AbstractButton.BOTTOM);
-		addBICButton.setHorizontalTextPosition(AbstractButton.CENTER);
+		addBICButton.setVerticalTextPosition(SwingConstants.BOTTOM);
+		addBICButton.setHorizontalTextPosition(SwingConstants.CENTER);
 		addBICButton.setActionCommand("addBIC");
 		addBICButton.addActionListener(this);
 
 		// Bag Item Button
 		bagItemButton = new JButton("Bag Item");
-		bagItemButton.setVerticalTextPosition(AbstractButton.BOTTOM);
-		bagItemButton.setHorizontalTextPosition(AbstractButton.CENTER);
+		bagItemButton.setVerticalTextPosition(SwingConstants.BOTTOM);
+		bagItemButton.setHorizontalTextPosition(SwingConstants.CENTER);
 		bagItemButton.setActionCommand("bagItem");
 		bagItemButton.addActionListener(this);
 
 		// Pay Button
 		payButton = new JButton("Pay");
-		payButton.setVerticalTextPosition(AbstractButton.BOTTOM);
-		payButton.setHorizontalTextPosition(AbstractButton.CENTER);
+		payButton.setVerticalTextPosition(SwingConstants.BOTTOM);
+		payButton.setHorizontalTextPosition(SwingConstants.CENTER);
 		payButton.setActionCommand("payItems");
 		payButton.addActionListener(this);
 
@@ -228,7 +228,7 @@ public class EDUInterface extends JFrame implements ActionListener {
 		// Add scroll to the text area
 		JScrollPane areaScrollPane = new JScrollPane(messagesTextArea);
 		areaScrollPane
-				.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+				.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		areaScrollPane.setPreferredSize(new Dimension(250, 250));
 
 		// Create border for Messages
@@ -256,6 +256,7 @@ public class EDUInterface extends JFrame implements ActionListener {
 	 * @param e
 	 *            ActionEvent captured when user presses a button in the GUI
 	 */
+	@Override
 	public void actionPerformed(ActionEvent e) {
 
 		// try{

@@ -2,20 +2,10 @@ package EduGUI;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -29,10 +19,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import Exception.WarningBox;
-import Operation.Configuration;
-import Operation.ReadFile;
 import Operation.StudentClassData;
-import Operation.WriteFile;
 
 public class InstructorGUI extends JDialog implements ActionListener {
 
@@ -81,6 +68,7 @@ public class InstructorGUI extends JDialog implements ActionListener {
 
 	}
 
+	@Override
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getSource() == ViewRosterBtn) {

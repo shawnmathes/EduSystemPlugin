@@ -1,27 +1,16 @@
 package EduGUI;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.SortedMap;
-import java.util.TreeMap;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
-import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -29,11 +18,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
-
 import Operation.CommonClassData;
-import Operation.Configuration;
-import Operation.ReadFile;
 
 public class MainGUI extends JFrame implements ActionListener {
 
