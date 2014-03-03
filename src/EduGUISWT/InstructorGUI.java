@@ -1,7 +1,5 @@
 package EduGUISWT;
 
-import javax.swing.JFrame;
-
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -37,8 +35,7 @@ public class InstructorGUI extends EduDialog {
 
 		courseList = new List(shell, SWT.MULTI | SWT.BORDER | SWT.V_SCROLL);
 		courseList.setItems(getMessage());
-		GridData grid = new GridData(GridData.FILL, GridData.CENTER, true,
-				false);
+		GridData grid = new GridData(SWT.FILL, SWT.FILL, true, true);
 		grid.horizontalSpan = 2;
 		courseList.setLayoutData(grid);
 
@@ -77,9 +74,6 @@ public class InstructorGUI extends EduDialog {
 							"You have to choose a class");
 					return;
 				} else {
-					JFrame frame = new JFrame("Instructor Access");
-					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
 					EditSyllabusGUI dlg = new EditSyllabusGUI(getParent(),
 							"EidtSyllabus", courseEntry);
 					dlg.open();

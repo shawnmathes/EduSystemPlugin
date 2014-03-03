@@ -27,7 +27,7 @@ public class EditSyllabusGUI extends EduDialog {
 		super(parent, title, new String[] { message });
 	}
 
-	private String getClassName() {
+	private String getCourseEntry() {
 		String[] message = getMessage();
 		return message == null || message.length == 0 ? "" : message[0];
 	}
@@ -37,11 +37,11 @@ public class EditSyllabusGUI extends EduDialog {
 		GridLayout layout = new GridLayout(2, false);
 		shell.setLayout(layout);
 
-		syllabusText = new Text(shell, SWT.MULTI | SWT.BORDER);
-		GridData gridData = new GridData();
-		gridData.horizontalSpan = 2;
-		syllabusText.setLayoutData(gridData);
-		syllabusText.setSize(400, 400);
+		syllabusText = new Text(shell, SWT.MULTI | SWT.BORDER | SWT.V_SCROLL);
+		GridData grid = new GridData(SWT.FILL, SWT.FILL, true, true);
+		grid.horizontalSpan = 2;
+		syllabusText.setLayoutData(grid);
+		syllabusText.setText(SyllabusService.get(getCourseEntry()));
 
 		Button saveSyllabusButton = new Button(shell, SWT.PUSH);
 		saveSyllabusButton.setText("Save Syllabus");
@@ -49,7 +49,7 @@ public class EditSyllabusGUI extends EduDialog {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				System.out.println("Save Syllabus pressed");
-				SyllabusService.save(getClassName(), syllabusText.getText()
+				SyllabusService.save(SyllabusService.get(getCourseEntry()), syllabusText.getText()
 						.toString());
 				shell.close();
 			}

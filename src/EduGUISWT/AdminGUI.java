@@ -46,8 +46,7 @@ public class AdminGUI extends EduDialog {
 
 		courseList = new List(shell, SWT.MULTI | SWT.BORDER | SWT.V_SCROLL);
 		courseList.setItems(getMessage());
-		GridData grid = new GridData(GridData.FILL, GridData.CENTER, true,
-				false);
+		GridData grid =  new GridData(SWT.FILL, SWT.FILL, true, true);
 		grid.horizontalSpan = 2;
 		courseList.setLayoutData(grid);
 

@@ -1,6 +1,7 @@
 package EduGUISWT;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Shell;
@@ -32,10 +33,10 @@ public class ViewSyllabusGUI extends EduDialog {
 		GridLayout layout = new GridLayout(1, false);
 		shell.setLayout(layout);
 		String syllabus = SyllabusService.get(getClassName());
-		Text syllabusText = new Text(shell, SWT.MULTI | SWT.BORDER);
-		syllabusText.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
-				true, false));
+		Text syllabusText = new Text(shell, SWT.MULTI | SWT.BORDER | SWT.V_SCROLL);
+		syllabusText.setLayoutData( new GridData(SWT.FILL, SWT.FILL, true, true));
 		syllabusText.setEditable(false);
 		syllabusText.setText(syllabus);
+		syllabusText.setBackground(new Color(shell.getDisplay(), 255, 255, 255));
 	}
 }

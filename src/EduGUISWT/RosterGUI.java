@@ -26,8 +26,7 @@ public class RosterGUI extends EduDialog {
 		shell.setLayout(layout);
 		List list = new List(shell, SWT.MULTI | SWT.BORDER | SWT.V_SCROLL);
 		list.setItems(getMessage());
-		GridData grid = new GridData(GridData.FILL, GridData.CENTER, true,
-				false);
+		GridData grid =  new GridData(SWT.FILL, SWT.FILL, true, true);
 		list.setLayoutData(grid);
 	}
 }
