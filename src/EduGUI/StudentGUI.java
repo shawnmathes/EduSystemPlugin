@@ -32,6 +32,7 @@ import Confirmation.ConfirmationBox;
 import Exception.WarningBox;
 import Operation.Configuration;
 import Operation.ReadFile;
+import Operation.StudentClassData;
 import Operation.WriteFile;
 
 public class StudentGUI extends JDialog implements ActionListener {
@@ -45,8 +46,6 @@ public class StudentGUI extends JDialog implements ActionListener {
 	JButton AddBtn;
 	JButton MyListBtn;
 	JButton viewSyllabusBtn;
-
-	String filename = Configuration.getDataRoot() + "studentManageFile.txt";
 
 	ArrayList<String> StudentEnrollList = new ArrayList<String>();
 
@@ -128,8 +127,8 @@ public class StudentGUI extends JDialog implements ActionListener {
 			int checkFlag = 0;
 
 			// Check if such student has choose more than 4 courses
-			ReadFile readobj = new ReadFile();
-			StudentEnrollList = readobj.ReadFile(filename);
+			StudentClassData studentClassData = new StudentClassData();
+			StudentEnrollList = studentClassData.getClassList();
 
 			if (StudentEnrollList.size() > 0) {
 				for (int i = 0; i < StudentEnrollList.size(); i++) {
@@ -167,8 +166,7 @@ public class StudentGUI extends JDialog implements ActionListener {
 								String updateString = Array[0] + ":"
 										+ ClassesString;
 								StudentEnrollList.set(i, updateString);
-								WriteFile writeobj = new WriteFile();
-								writeobj.write(StudentEnrollList, filename);
+								studentClassData.update(StudentEnrollList);
 
 								ConfirmationBox confirmation = new ConfirmationBox(
 										new JFrame(), "Success Message",
@@ -186,8 +184,7 @@ public class StudentGUI extends JDialog implements ActionListener {
 					String statement = studentIDText.getText().toString() + ":"
 							+ courseEntry;
 					StudentEnrollList.add(statement);
-					WriteFile writeobj = new WriteFile();
-					writeobj.write(StudentEnrollList, filename);
+					studentClassData.update(StudentEnrollList);
 					ConfirmationBox confirmation = new ConfirmationBox(
 							new JFrame(), "Success Message",
 							"Course Added Successfully");
@@ -197,8 +194,8 @@ public class StudentGUI extends JDialog implements ActionListener {
 			} else {
 				String statement = studentIDText.getText().toString() + ":"
 						+ courseEntry;
-				WriteFile writeobj = new WriteFile();
-				writeobj.writeWhenEmpty(statement, filename);
+				StudentEnrollList.add(statement);
+				studentClassData.update(StudentEnrollList);
 				ConfirmationBox confirmation = new ConfirmationBox(
 						new JFrame(), "Success Message",
 						"Course Added Successfully");

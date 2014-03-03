@@ -31,6 +31,7 @@ import javax.swing.event.ListSelectionListener;
 import Exception.WarningBox;
 import Operation.Configuration;
 import Operation.ReadFile;
+import Operation.StudentClassData;
 import Operation.WriteFile;
 
 public class InstructorGUI extends JDialog implements ActionListener {
@@ -43,10 +44,6 @@ public class InstructorGUI extends JDialog implements ActionListener {
 	JList list;
 	JButton ViewRosterBtn;
 	JButton EditSyllabusBtn;
-
-	String filename = Configuration.getDataRoot() + "studentManageFile.txt";
-
-	ArrayList<String> StudentEnrollList = new ArrayList<String>();
 
 	public InstructorGUI(JFrame parent, String title, String[] message) {
 		super(parent, title, true);
@@ -94,9 +91,8 @@ public class InstructorGUI extends JDialog implements ActionListener {
 						"No Class Warning", "You have to choose a class");
 				return;
 			} else {
-				ReadFile readfile = new ReadFile();
-				ArrayList<String> student = new ArrayList();
-				student = readfile.ReadFile(filename);
+				StudentClassData studentClassData = new StudentClassData();
+				ArrayList<String> student = studentClassData.getClassList();
 
 				String studentID = "";
 

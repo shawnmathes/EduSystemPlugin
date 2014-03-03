@@ -29,8 +29,10 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import Exception.WarningBox;
+import Operation.CommonClassData;
 import Operation.Configuration;
 import Operation.ReadFile;
+import Operation.StudentClassData;
 import Operation.WriteFile;
 
 public class AdminGUIList extends JDialog implements ActionListener {
@@ -38,8 +40,6 @@ public class AdminGUIList extends JDialog implements ActionListener {
 	JList list;
 	JButton DeleteBtn;
 
-	String commonfilename = Configuration.getDataRoot() + "commonClassList";
-	String studentfilename = Configuration.getDataRoot() + "studentManageFile.txt";
 
 	ArrayList<String> stuInfo = new ArrayList<String>();
 	ArrayList<String> stuInfo2 = new ArrayList<String>();
@@ -89,10 +89,8 @@ public class AdminGUIList extends JDialog implements ActionListener {
 				String dropClass = "[" + dropClassArray2[0] + "]";
 
 				// Update info into current common class list
-				ReadFile readForcurrent = new ReadFile();
-				ArrayList<String> currentList = new ArrayList();
-				ArrayList<String> giveValueList = new ArrayList();
-				currentList = readForcurrent.ReadFile(commonfilename);
+				CommonClassData commonClassData = new CommonClassData();
+				ArrayList<String> currentList = commonClassData.getList();
 
 				for (int k = 0; k < currentList.size(); k++) {
 					if (dropClass.equals(currentList.get(k))) {
@@ -101,18 +99,13 @@ public class AdminGUIList extends JDialog implements ActionListener {
 					}
 				}
 
-				WriteFile writeForcurrent = new WriteFile();
-				writeForcurrent.write(currentList, commonfilename);
+				commonClassData.update(currentList);
 
-				ReadFile givevalue = new ReadFile();
-				giveValueList = givevalue.ReadFile(commonfilename);
-				String[] valueInit = new String[giveValueList.size()];
-				valueInit = giveValueList.toArray(valueInit);
-				list.setListData(valueInit);
+				list.setListData(commonClassData.getListAsArray());
 
 				// Update info to student info file
-				ReadFile read2 = new ReadFile();
-				stuInfo2 = read2.ReadFile(studentfilename);
+				StudentClassData studentClassData = new StudentClassData();
+				stuInfo2 = studentClassData.getClassList();
 				for (int j = 0; j < stuInfo2.size(); j++) {
 					String id = "";
 					if (!stuInfo2.get(j).equals("")) {
@@ -155,9 +148,7 @@ public class AdminGUIList extends JDialog implements ActionListener {
 						}
 
 						stuInfo2.set(j, update);
-
-						WriteFile write = new WriteFile();
-						write.write(stuInfo2, studentfilename);
+						studentClassData.update(stuInfo2);
 
 					}
 				}

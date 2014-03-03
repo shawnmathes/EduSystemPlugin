@@ -31,6 +31,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
+import Operation.CommonClassData;
 import Operation.Configuration;
 import Operation.ReadFile;
 
@@ -61,11 +62,6 @@ public class MainGUI extends JFrame implements ActionListener {
 	JMenuBar menu;
 	JMenu file;
 	JMenuItem closeMenu;
-
-	String studentfile = Configuration.getDataRoot() + "studentManageFile.txt";
-	String commonfilelist = Configuration.getDataRoot() + "commonClassList";
-
-	// String adminlist = "AdminClassList";
 
 	public MainGUI() {
 
@@ -117,27 +113,13 @@ public class MainGUI extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		CommonClassData commonClassData = new CommonClassData();
+		String[] startInit = commonClassData.getListAsArray();
+		
 		if (e.getSource() == Button) {
 			System.out.println("you have chosen student option");
 			JFrame frame = new JFrame("Student Access");
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-			ReadFile readfile = new ReadFile();
-			ArrayList<String> commonfilelistArray = new ArrayList();
-			commonfilelistArray = readfile.ReadFile(commonfilelist);
-
-			String[] startInit = new String[commonfilelistArray.size()];
-			startInit = commonfilelistArray.toArray(startInit);
-
-			/*
-			 * String send = ""; for(int op=0;op<startInit.length;op++) {
-			 * if(!"".equals(startInit[op])){ String []temp =
-			 * startInit[op].split("\\["); String []temp2 =
-			 * temp[1].split("\\]"); send = send + temp2[0]+","; } }
-			 * 
-			 * String [] startInitTrue = send.split(",");
-			 */
 
 			StudentGUI dlg = new StudentGUI(new JFrame(), "Student Account",
 					startInit);
@@ -148,27 +130,13 @@ public class MainGUI extends JFrame implements ActionListener {
 			JFrame frame = new JFrame("Instructor Access");
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-			ReadFile readfile = new ReadFile();
-			ArrayList<String> insfilelistArray = new ArrayList();
-			insfilelistArray = readfile.ReadFile(commonfilelist);
-
-			String[] startInit1 = new String[insfilelistArray.size()];
-			startInit1 = insfilelistArray.toArray(startInit1);
-
 			InstructorGUI dlg = new InstructorGUI(new JFrame(),
-					"Instructor Account", startInit1);
+					"Instructor Account", startInit);
 		}
 		if (e.getSource() == Button3) {
 			System.out.println("you have chosen administrator option");
 			JFrame frame = new JFrame("Admin Access");
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-			ReadFile readfile = new ReadFile();
-			ArrayList<String> adminfilelistArray = new ArrayList();
-			adminfilelistArray = readfile.ReadFile(commonfilelist);
-
-			String[] startInit = new String[adminfilelistArray.size()];
-			startInit = adminfilelistArray.toArray(startInit);
 
 			AdminGUI dlg = new AdminGUI(new JFrame(), "Admin Account",
 					startInit);

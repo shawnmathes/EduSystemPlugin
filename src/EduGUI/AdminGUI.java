@@ -32,8 +32,10 @@ import javax.swing.event.ListSelectionListener;
 
 import Confirmation.ConfirmationBox;
 import Exception.WarningBox;
+import Operation.CommonClassData;
 import Operation.Configuration;
 import Operation.ReadFile;
+import Operation.StudentClassData;
 import Operation.WriteFile;
 
 public class AdminGUI extends JDialog implements ActionListener {
@@ -44,9 +46,6 @@ public class AdminGUI extends JDialog implements ActionListener {
 	JButton AddBtn;
 	// JButton DropBtn;
 	JButton DeleteBtn;
-
-	String studentfilename = Configuration.getDataRoot() + "studentManageFile.txt";
-	String commonFilename = Configuration.getDataRoot() + "commonClassList";
 
 	ArrayList<String> currentClassList = new ArrayList<String>();
 
@@ -98,6 +97,8 @@ public class AdminGUI extends JDialog implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 
+		CommonClassData commonClassData = new CommonClassData();
+		
 		if (e.getSource() == AddBtn) {
 			System.out.println("you have chosen Add Class Button");
 
@@ -120,8 +121,7 @@ public class AdminGUI extends JDialog implements ActionListener {
 			}
 
 			// Check if selected class already there
-			ReadFile readfile = new ReadFile();
-			currentClassList = readfile.ReadFile(commonFilename);
+			currentClassList = commonClassData.getList();
 			int checkFlag = 0;
 
 			for (int i = 0; i < currentClassList.size(); i++) {
@@ -145,16 +145,9 @@ public class AdminGUI extends JDialog implements ActionListener {
 
 			if (checkFlag == 0) {
 				currentClassList.add(area.getText().toString());
-				WriteFile writefile = new WriteFile();
-				writefile.write(currentClassList, commonFilename);
+				commonClassData.update(currentClassList);
 
-				ReadFile givevalue = new ReadFile();
-				ArrayList<String> refreshlist = new ArrayList<String>();
-
-				refreshlist = givevalue.ReadFile(commonFilename);
-				String[] valueInit = new String[refreshlist.size()];
-				valueInit = refreshlist.toArray(valueInit);
-				list.setListData(valueInit);
+				list.setListData(commonClassData.getListAsArray());
 
 				area.setText("");
 				ConfirmationBox confirmation = new ConfirmationBox(
@@ -179,10 +172,7 @@ public class AdminGUI extends JDialog implements ActionListener {
 				}
 
 				// Update info into current common class list
-				ReadFile readForcurrent = new ReadFile();
-				ArrayList<String> currentList = new ArrayList();
-				ArrayList<String> giveValueList = new ArrayList();
-				currentList = readForcurrent.ReadFile(commonFilename);
+				ArrayList<String> currentList = commonClassData.getList();
 
 				for (int k = 0; k < currentList.size(); k++) {
 					if (selectedCourse.equals(currentList.get(k))) {
@@ -191,22 +181,17 @@ public class AdminGUI extends JDialog implements ActionListener {
 					}
 				}
 
-				WriteFile writeForcurrent = new WriteFile();
-				writeForcurrent.write(currentList, commonFilename);
+				commonClassData.update(currentList);
 
-				ReadFile givevalue = new ReadFile();
-				giveValueList = givevalue.ReadFile(commonFilename);
-				String[] valueInit = new String[giveValueList.size()];
-				valueInit = giveValueList.toArray(valueInit);
-				list.setListData(valueInit);
+				list.setListData(commonClassData.getListAsArray());
 
 				ConfirmationBox confirmation = new ConfirmationBox(
 						new JFrame(), "Success Message",
 						"Course Deleted Successfully");
 
 				// Update info to student info file
-				ReadFile read2 = new ReadFile();
-				stuInfo2 = read2.ReadFile(studentfilename);
+				StudentClassData studentClassData = new StudentClassData();
+				stuInfo2 = studentClassData.getClassList();
 				for (int j = 0; j < stuInfo2.size(); j++) {
 					String id = "";
 					if (!stuInfo2.get(j).equals("")) {
@@ -250,8 +235,7 @@ public class AdminGUI extends JDialog implements ActionListener {
 
 						stuInfo2.set(j, update);
 
-						WriteFile write = new WriteFile();
-						write.write(stuInfo2, studentfilename);
+						studentClassData.update(stuInfo2);
 
 					}
 				}

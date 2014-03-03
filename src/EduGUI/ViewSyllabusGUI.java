@@ -28,18 +28,16 @@ import javax.swing.JTextField;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import EduGUI.ViewSyllabusGUI.SelectionHandler;
 import Exception.WarningBox;
 import Operation.Configuration;
 import Operation.ReadFile;
+import Operation.SyllabusData;
 import Operation.WriteFile;
 
 public class ViewSyllabusGUI extends JDialog implements ActionListener {
 
-	JList list;
+	JTextArea area = new JTextArea(20, 30);
 	ArrayList<String> syllabusInfo = new ArrayList<String>();
-
-	String filename = "";
 
 	public ViewSyllabusGUI(JFrame parent, String title, String className) {
 		super(parent, title, true);
@@ -48,16 +46,11 @@ public class ViewSyllabusGUI extends JDialog implements ActionListener {
 			Point p = parent.getLocation();
 		}
 
-		ReadFile readfile = new ReadFile();
-		syllabusInfo = readfile.ReadFile(Configuration.getDataRoot() + className);
+		SyllabusData syllabusData = new SyllabusData();
+		area.setText(syllabusData.get(className));
+		area.setEditable(false);
 
-		String[] startInit = new String[syllabusInfo.size()];
-		startInit = syllabusInfo.toArray(startInit);
-
-		// Add list
-		list = new JList(startInit);
-		list.addListSelectionListener(new SelectionHandler());
-		JScrollPane jsp = new JScrollPane(list);
+		JScrollPane jsp = new JScrollPane(area);
 		jsp.setSize(100, 100);
 
 		getContentPane().add(jsp, BorderLayout.CENTER);
@@ -72,15 +65,4 @@ public class ViewSyllabusGUI extends JDialog implements ActionListener {
 	public void actionPerformed(ActionEvent e1) {
 
 	}
-
-	public class SelectionHandler implements ListSelectionListener {
-
-		@Override
-		public void valueChanged(ListSelectionEvent e) {
-			if (!e.getValueIsAdjusting()) {
-				System.out.println(Arrays.toString(list.getSelectedValues()));
-			}
-		}
-	}
-
 }

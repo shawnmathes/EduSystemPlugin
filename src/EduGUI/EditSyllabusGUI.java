@@ -31,6 +31,7 @@ import javax.swing.event.ListSelectionListener;
 import Exception.WarningBox;
 import Operation.Configuration;
 import Operation.ReadFile;
+import Operation.SyllabusData;
 import Operation.WriteFile;
 
 public class EditSyllabusGUI extends JDialog implements ActionListener {
@@ -42,7 +43,8 @@ public class EditSyllabusGUI extends JDialog implements ActionListener {
 
 	ArrayList<String> syllabusInfo = new ArrayList<String>();
 	ArrayList<String> stuInfo2 = new ArrayList<String>();
-	String filename = "";
+	
+	String className;
 
 	public EditSyllabusGUI(JFrame parent, String title, String className) {
 		super(parent, title, true);
@@ -50,8 +52,8 @@ public class EditSyllabusGUI extends JDialog implements ActionListener {
 			Dimension parentSize = parent.getSize();
 			Point p = parent.getLocation();
 		}
-
-		filename = Configuration.getDataRoot() + className;
+		
+		this.className = className;
 
 		// Add button
 		JPanel buttonPane = new JPanel();
@@ -72,26 +74,9 @@ public class EditSyllabusGUI extends JDialog implements ActionListener {
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		pack();
 		setBounds(200, 200, 400, 400);
-
-		File fileSyllabus = new File(filename);
-		if (fileSyllabus.exists()) {
-			ReadFile readfile = new ReadFile();
-			syllabusInfo = readfile.ReadFile(filename);
-
-			String set = "";
-
-			for (int i = 0; i < syllabusInfo.size(); i++) {
-				set = set + syllabusInfo.get(i) + "\n";
-
-			}
-
-			area.setText(set);
-		}
-
-		else {
-			area.setText("");
-		}
-
+		
+		SyllabusData syllabusData = new SyllabusData();
+		area.setText(syllabusData.get(className));
 		setVisible(true);
 
 	}
@@ -99,12 +84,8 @@ public class EditSyllabusGUI extends JDialog implements ActionListener {
 	public void actionPerformed(ActionEvent e1) {
 
 		if (e1.getSource() == SaveBtn) {
-			File myfile = new File(filename);
-
-			String text = "";
-			text = area.getText().toString();
-			WriteFile writefile = new WriteFile();
-			writefile.writeString(text, filename);
+			SyllabusData syllabusData = new SyllabusData();
+			syllabusData.save(className, area.getText().toString());
 
 			setVisible(false);
 			dispose();

@@ -33,6 +33,7 @@ import Confirmation.ConfirmationBox;
 import Exception.WarningBox;
 import Operation.Configuration;
 import Operation.ReadFile;
+import Operation.StudentClassData;
 import Operation.WriteFile;
 
 public class StudentGUIMyList extends JDialog implements ActionListener {
@@ -41,8 +42,6 @@ public class StudentGUIMyList extends JDialog implements ActionListener {
 
 	JList list;
 	JButton DropBtn;
-
-	String filename = Configuration.getDataRoot() + "studentManageFile.txt";
 
 	ArrayList<String> stuInfo = new ArrayList<String>();
 	ArrayList<String> stuInfo2 = new ArrayList<String>();
@@ -60,8 +59,8 @@ public class StudentGUIMyList extends JDialog implements ActionListener {
 
 		msg = message;
 
-		ReadFile read = new ReadFile();
-		stuInfo = read.ReadFile(filename);
+		StudentClassData studentClassData = new StudentClassData();
+		stuInfo = studentClassData.getClassList();
 		for (int i = 0; i < stuInfo.size(); i++) {
 			String[] temp = stuInfo.get(i).split(":");
 			String id = temp[0];
@@ -110,8 +109,8 @@ public class StudentGUIMyList extends JDialog implements ActionListener {
 						"No Class Warning", "You have no class to drop");
 				return;
 			} else {
-				ReadFile read2 = new ReadFile();
-				stuInfo2 = read2.ReadFile(filename);
+				StudentClassData studentClassData = new StudentClassData();
+				stuInfo2 = studentClassData.getClassList();
 				for (int j = 0; j < stuInfo2.size(); j++) {
 					String[] temp = stuInfo2.get(j).split(":");
 					String id = temp[0];
@@ -149,8 +148,7 @@ public class StudentGUIMyList extends JDialog implements ActionListener {
 				}
 
 				// Update the record file.
-				WriteFile write = new WriteFile();
-				write.write(stuInfo2, filename);
+				studentClassData.update(stuInfo2);
 
 				ConfirmationBox confirmation = new ConfirmationBox(
 						new JFrame(), "Drop Message",
