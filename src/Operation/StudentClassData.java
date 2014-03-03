@@ -12,14 +12,6 @@ public class StudentClassData {
 		writeobj.write(studentEnrollList, studentfile);
 	}
 
-	public void addClass(String studentID, String className) {
-
-	}
-
-	public void dropClass(String studentID, String className) {
-
-	}
-
 	public ArrayList<String> getClassList(String studentID) {
 		return new ArrayList<String>();
 	}

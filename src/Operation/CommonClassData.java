@@ -7,14 +7,6 @@ public class CommonClassData {
 
 	private String commonfilelist = Configuration.getDataRoot()
 			+ "commonClassList";
-
-	public void addClass(String className) {
-
-	}
-
-	public void deleteClass(String className) {
-
-	}
 	
 	public ArrayList<String> getList() {
 		ReadFile readfile = new ReadFile();
