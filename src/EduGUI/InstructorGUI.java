@@ -28,7 +28,7 @@ public class InstructorGUI extends JDialog implements ActionListener {
 	JTextField studentIDText;
 
 	JTextArea messagesTextArea;
-	JList list;
+	JList<String> list;
 	JButton ViewRosterBtn;
 	JButton EditSyllabusBtn;
 
@@ -36,7 +36,7 @@ public class InstructorGUI extends JDialog implements ActionListener {
 		super(parent, title, true);
 
 		// Add list
-		list = new JList(message);
+		list = new JList<String>(message);
 		list.addListSelectionListener(new SelectionHandler());
 		JScrollPane jsp = new JScrollPane(list);
 		jsp.setSize(100, 100);

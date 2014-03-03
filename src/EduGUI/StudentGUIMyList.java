@@ -1,8 +1,6 @@
 package EduGUI;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -26,7 +24,7 @@ public class StudentGUIMyList extends JDialog implements ActionListener {
 
 	JLabel studentIDLabel;
 
-	JList list;
+	JList<String> list;
 	JButton DropBtn;
 
 	ArrayList<String> stuInfo = new ArrayList<String>();
@@ -37,7 +35,7 @@ public class StudentGUIMyList extends JDialog implements ActionListener {
 		super(parent, title, true);
 
 		String[] data = { "" };
-		list = new JList(data);
+		list = new JList<String>(data);
 
 		msg = message;
 
@@ -49,7 +47,7 @@ public class StudentGUIMyList extends JDialog implements ActionListener {
 
 			if (id.equals(message)) {
 				String[] myClassArray = temp[1].split(",");
-				list = new JList(myClassArray);
+				list = new JList<String>(myClassArray);
 				break;
 			}
 		}

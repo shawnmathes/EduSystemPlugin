@@ -15,12 +15,12 @@ import javax.swing.event.ListSelectionListener;
 @SuppressWarnings("serial")
 public class RosterGUI extends JDialog implements ActionListener {
 
-	JList list;
+	JList<String> list;
 
 	public RosterGUI(JFrame parent, String title, String[] message) {
 		super(parent, title, true);
 
-		list = new JList(message);
+		list = new JList<String>(message);
 
 		// Add list
 		list.addListSelectionListener(new SelectionHandler());

@@ -30,7 +30,7 @@ public class StudentGUI extends JDialog implements ActionListener {
 	JTextField studentIDText;
 
 	JTextArea messagesTextArea;
-	JList list;
+	JList<String> list;
 	JButton AddBtn;
 	JButton MyListBtn;
 	JButton viewSyllabusBtn;
@@ -55,7 +55,7 @@ public class StudentGUI extends JDialog implements ActionListener {
 		// "CS5521-Network ArchitectureII",
 		// "CS5551-Advanced Software Engineering",
 		// "CS5567-Machine Learning in Bilinformatics","CS5570-Architecture Of Database Management System","CS5573-Information Security and Assurance","CS5560-Knowledge Discovery and Management"};
-		list = new JList(message);
+		list = new JList<String>(message);
 		list.addListSelectionListener(new SelectionHandler());
 		JScrollPane jsp = new JScrollPane(list);
 		jsp.setSize(100, 100);

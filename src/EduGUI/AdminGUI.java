@@ -28,7 +28,7 @@ public class AdminGUI extends JDialog implements ActionListener {
 
 	JTextArea area = new JTextArea("Please enter the new course name:", 1, 33);
 
-	JList list;
+	JList<String> list;
 	JButton AddBtn;
 	// JButton DropBtn;
 	JButton DeleteBtn;
@@ -49,7 +49,7 @@ public class AdminGUI extends JDialog implements ActionListener {
 		textPane.add(area);
 
 		// Add list
-		list = new JList(message);
+		list = new JList<String>(message);
 		list.addListSelectionListener(new SelectionHandler());
 		JScrollPane jsp = new JScrollPane(list);
 		jsp.setBounds(200, 200, 400, 300);
@@ -211,8 +211,6 @@ public class AdminGUI extends JDialog implements ActionListener {
 
 						if (!update.equals("")) {
 							update = id + ":" + update;
-						} else if (update.equals("")) {
-							update = update;
 						}
 
 						stuInfo2.set(j, update);

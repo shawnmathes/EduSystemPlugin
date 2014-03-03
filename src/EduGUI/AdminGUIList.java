@@ -1,8 +1,6 @@
 package EduGUI;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -24,7 +22,7 @@ import Operation.StudentClassData;
 @SuppressWarnings("serial")
 public class AdminGUIList extends JDialog implements ActionListener {
 
-	JList list;
+	JList<String> list;
 	JButton DeleteBtn;
 
 	ArrayList<String> stuInfo = new ArrayList<String>();
@@ -34,7 +32,7 @@ public class AdminGUIList extends JDialog implements ActionListener {
 	public AdminGUIList(JFrame parent, String title, String[] message) {
 		super(parent, title, true);
 
-		list = new JList(message);
+		list = new JList<String>(message);
 
 		// Add list
 		list.addListSelectionListener(new SelectionHandler());
