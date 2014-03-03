@@ -3,7 +3,6 @@ package EduGUI;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -17,8 +16,8 @@ import javax.swing.JTextField;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import DomainServices.StudentClassService;
 import Exception.WarningBox;
-import Operation.StudentClassData;
 
 @SuppressWarnings("serial")
 public class InstructorGUI extends JDialog implements ActionListener {
@@ -76,33 +75,10 @@ public class InstructorGUI extends JDialog implements ActionListener {
 						"No Class Warning", "You have to choose a class");
 				return;
 			} else {
-				StudentClassData studentClassData = new StudentClassData();
-				ArrayList<String> student = studentClassData.getClassList();
-
-				String studentID = "";
-
-				for (int i = 0; i < student.size(); i++) {
-					if (student.get(i).contains(courseEntry)) {
-						if (!student.get(i).equals("")) {
-							String[] temp = student.get(i).split(":");
-							studentID = studentID + temp[0] + ",";
-						}
-
-					}
-				}
-
 				JFrame frame = new JFrame("Instructor Access");
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-				if (studentID.equals("")) {
-					String[] startInit1 = { "" };
-					RosterGUI dlg = new RosterGUI(new JFrame(), "Roster",
-							startInit1);
-				} else {
-					String[] startInit1 = studentID.split(",");
-					RosterGUI dlg = new RosterGUI(new JFrame(), "Roster",
-							startInit1);
-				}
+				RosterGUI dlg = new RosterGUI(new JFrame(), "Roster",
+							StudentClassService.viewRoster(courseEntry));
 			}
 		} else if (e.getSource() == EditSyllabusBtn) {
 			String courseEntry = (String) (list.getSelectedValue());

@@ -3,7 +3,6 @@ package EduGUI;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -11,7 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-import Operation.SyllabusData;
+import DomainServices.SyllabusService;
 
 @SuppressWarnings("serial")
 public class EditSyllabusGUI extends JDialog implements ActionListener {
@@ -20,9 +19,6 @@ public class EditSyllabusGUI extends JDialog implements ActionListener {
 	JButton CancelBtn;
 
 	JTextArea area = new JTextArea(20, 30);
-
-	ArrayList<String> syllabusInfo = new ArrayList<String>();
-	ArrayList<String> stuInfo2 = new ArrayList<String>();
 
 	String className;
 
@@ -51,27 +47,20 @@ public class EditSyllabusGUI extends JDialog implements ActionListener {
 		pack();
 		setBounds(200, 200, 400, 400);
 
-		SyllabusData syllabusData = new SyllabusData();
-		area.setText(syllabusData.get(className));
+		area.setText(SyllabusService.get(className));
 		setVisible(true);
 
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e1) {
-
 		if (e1.getSource() == SaveBtn) {
-			SyllabusData syllabusData = new SyllabusData();
-			syllabusData.save(className, area.getText().toString());
-
+			SyllabusService.save(className, area.getText().toString());
 			setVisible(false);
 			dispose();
 		} else if (e1.getSource() == CancelBtn) {
 			setVisible(false);
 			dispose();
-
 		}
-
 	}
-
 }

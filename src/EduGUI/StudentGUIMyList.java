@@ -16,8 +16,8 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import Confirmation.ConfirmationBox;
+import DomainServices.StudentClassService;
 import Exception.WarningBox;
-import Operation.StudentClassData;
 
 @SuppressWarnings("serial")
 public class StudentGUIMyList extends JDialog implements ActionListener {
@@ -38,20 +38,7 @@ public class StudentGUIMyList extends JDialog implements ActionListener {
 		list = new JList<String>(data);
 
 		msg = message;
-
-		StudentClassData studentClassData = new StudentClassData();
-		stuInfo = studentClassData.getClassList();
-		for (int i = 0; i < stuInfo.size(); i++) {
-			String[] temp = stuInfo.get(i).split(":");
-			String id = temp[0];
-
-			if (id.equals(message)) {
-				String[] myClassArray = temp[1].split(",");
-				list = new JList<String>(myClassArray);
-				break;
-			}
-		}
-
+		list = new JList<String>(StudentClassService.getClassList(message));
 		studentIDLabel = new JLabel("Student ID is " + message);
 
 		// Add Student ID Text
@@ -91,46 +78,8 @@ public class StudentGUIMyList extends JDialog implements ActionListener {
 						"No Class Warning", "You have no class to drop");
 				return;
 			} else {
-				StudentClassData studentClassData = new StudentClassData();
-				stuInfo2 = studentClassData.getClassList();
-				for (int j = 0; j < stuInfo2.size(); j++) {
-					String[] temp = stuInfo2.get(j).split(":");
-					String id = temp[0];
-
-					if (id.equals(msg)) {
-
-						String newList = "";
-						// Construct a new course list with the selected course
-						// removed.
-						String selectedCourses = temp[1];
-						String[] splitList = selectedCourses.split(courseEntry);
-						for (String s : splitList) {
-							if (s.trim().endsWith(",")) {
-								newList += s.substring(0, s.lastIndexOf(','));
-							} else if (s.trim().startsWith(",")) {
-								newList += s.substring(s.indexOf(',') + 1);
-							} else {
-								newList += s;
-							}
-						}
-						if (newList.trim().length() == 0) {
-							// If this student does not have any other courses,
-							// remove the record
-							stuInfo2.set(j, null);
-							String[] data = { "" };
-							list.setListData(data);
-
-						} else {
-							// Update the course list of this student
-							stuInfo2.set(j, id + ":" + newList);
-							list.setListData(newList.split(","));
-						}
-						break;
-					}
-				}
-
-				// Update the record file.
-				studentClassData.update(stuInfo2);
+				StudentClassService.dropClass(msg, courseEntry);
+				list = new JList<String>(StudentClassService.getClassList(msg));
 
 				ConfirmationBox confirmation = new ConfirmationBox(
 						new JFrame(), "Drop Message",

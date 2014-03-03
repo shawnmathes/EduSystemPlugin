@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-import Operation.SyllabusData;
+import DomainServices.SyllabusService;
 
 @SuppressWarnings("serial")
 public class ViewSyllabusGUI extends JDialog implements ActionListener {
@@ -21,8 +21,7 @@ public class ViewSyllabusGUI extends JDialog implements ActionListener {
 	public ViewSyllabusGUI(JFrame parent, String title, String className) {
 		super(parent, title, true);
 
-		SyllabusData syllabusData = new SyllabusData();
-		area.setText(syllabusData.get(className));
+		area.setText(SyllabusService.get(className));
 		area.setEditable(false);
 
 		JScrollPane jsp = new JScrollPane(area);

@@ -19,7 +19,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import Operation.CommonClassData;
+import DomainServices.CommonClassService;
 
 @SuppressWarnings("serial")
 public class MainGUI extends JFrame implements ActionListener {
@@ -129,8 +129,7 @@ public class MainGUI extends JFrame implements ActionListener {
 	}
 
 	private String[] getClassListAsArray() {
-		CommonClassData commonClassData = new CommonClassData();
-		ArrayList<String> commonfilelistArray = commonClassData.getList();
+		ArrayList<String> commonfilelistArray = CommonClassService.getList();
 		return commonfilelistArray.toArray(new String[commonfilelistArray
 				.size()]);
 	}

@@ -18,9 +18,10 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import Confirmation.ConfirmationBox;
+import DomainServices.StudentClassService;
+import DomainServices.SyllabusService;
+import DomainServices.WarningException;
 import Exception.WarningBox;
-import Operation.StudentClassData;
-import Operation.SyllabusData;
 
 @SuppressWarnings("serial")
 public class StudentGUI extends JDialog implements ActionListener {
@@ -90,104 +91,17 @@ public class StudentGUI extends JDialog implements ActionListener {
 			System.out.println("you have chosen Add Class Button");
 
 			String courseEntry = (String) (list.getSelectedValue());
-
-			// Check if ID is in correct format
-			if (studentIDText.getText().toString().length() == 0) {
-				WarningBox idWarning1 = new WarningBox(new JFrame(),
-						"ID Warning", "Please input ID");
+			try {
+				StudentClassService.addClass(studentIDText.getText(), courseEntry);
+			} catch (WarningException e1) {
+				WarningBox warningBox = new WarningBox(new JFrame(), e1.getTitle(),
+						e1.getMessage());
 				return;
-			} else if ((studentIDText.getText().toString().length() != 8)
-					&& (studentIDText.getText().toString().length() != 0)) {
-				WarningBox idWarning2 = new WarningBox(new JFrame(),
-						"ID Warning", "Student ID must be 8 digit");
-				return;
-			} else {
-				if ((courseEntry == "") || (courseEntry == null)) {
-					WarningBox NoClassWarning = new WarningBox(new JFrame(),
-							"No Class Warning", "Must choose one class to add");
-					return;
-				}
-
 			}
-
-			int checkFlag = 0;
-
-			// Check if such student has choose more than 4 courses
-			StudentClassData studentClassData = new StudentClassData();
-			StudentEnrollList = studentClassData.getClassList();
-
-			if (StudentEnrollList.size() > 0) {
-				for (int i = 0; i < StudentEnrollList.size(); i++) {
-					if (!StudentEnrollList.get(i).equals("")) {
-						String[] tempArray = StudentEnrollList.get(i)
-								.split(":");
-						String id = tempArray[0];
-						// student already select classes
-						if (id.equals(studentIDText.getText().toString())) {
-							checkFlag = 1;
-							String[] Array = StudentEnrollList.get(i)
-									.split(":");
-							String ClassesString = Array[1];
-							String[] ClassesArray = ClassesString.split(",");
-
-							// class # > 4
-							if (ClassesArray.length >= 4) {
-								WarningBox stuWarning = new WarningBox(
-										new JFrame(), "Enroll Warning",
-										"Can't select more than 4 classes");
-
-								return;
-							} else if (ClassesString.contains(courseEntry))// choose
-																			// the
-																			// same
-																			// class
-																			// again
-							{
-								WarningBox dupWarning = new WarningBox(
-										new JFrame(), "Enroll Warning",
-										"Can't select same class more than once");
-							} else {
-								ClassesString = ClassesString + ","
-										+ courseEntry;
-								String updateString = Array[0] + ":"
-										+ ClassesString;
-								StudentEnrollList.set(i, updateString);
-								studentClassData.update(StudentEnrollList);
-
-								ConfirmationBox confirmation = new ConfirmationBox(
-										new JFrame(), "Success Message",
-										"Course Added Successfully");
-								return;
-
-							}
-						}
-
-					}
-				}
-
-				if (checkFlag == 0) {
-
-					String statement = studentIDText.getText().toString() + ":"
-							+ courseEntry;
-					StudentEnrollList.add(statement);
-					studentClassData.update(StudentEnrollList);
-					ConfirmationBox confirmation = new ConfirmationBox(
-							new JFrame(), "Success Message",
-							"Course Added Successfully");
-
-				}
-
-			} else {
-				String statement = studentIDText.getText().toString() + ":"
-						+ courseEntry;
-				StudentEnrollList.add(statement);
-				studentClassData.update(StudentEnrollList);
-				ConfirmationBox confirmation = new ConfirmationBox(
-						new JFrame(), "Success Message",
-						"Course Added Successfully");
-
-			}
-
+			
+			ConfirmationBox confirmation = new ConfirmationBox(
+					new JFrame(), "Success Message",
+					"Course Added Successfully");
 		}
 
 		if (e.getSource() == MyListBtn) {
@@ -219,8 +133,7 @@ public class StudentGUI extends JDialog implements ActionListener {
 				return;
 			}
 
-			SyllabusData syllabusData = new SyllabusData();
-			String syllabus = syllabusData.get(courseEntry);
+			String syllabus = SyllabusService.get(courseEntry);
 			if (syllabus.length() == 0) {
 				WarningBox noSyllabusWarning = new WarningBox(new JFrame(),
 						"No Syllabus Warning",
