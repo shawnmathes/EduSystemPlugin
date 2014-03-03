@@ -3,8 +3,9 @@ package edusystemplugin.handlers;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.swt.widgets.Shell;
 
-import EduGUI.MainGUI;
+import EduGUISWT.MainGUI;
 
 /**
  * Our sample handler extends AbstractHandler, an IHandler base class.
@@ -31,8 +32,8 @@ public class SampleHandler extends AbstractHandler {
 		 * MessageDialog.openInformation( window.getShell(),
 		 * "Class Enrollment System", "Hello, Eclipse world");
 		 */
-		@SuppressWarnings("unused")
-		MainGUI intO = new MainGUI();
+		MainGUI intO = new MainGUI(new Shell());
+		intO.open();
 		return null;
 	}
 }
