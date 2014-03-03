@@ -1,11 +1,11 @@
 package DomainServices;
 
+import edusystemplugin.extensions.EduDataFactory;
 import edusystemplugin.extensions.IEduData;
-import Operation.EduData;
 
 public class SyllabusService {
 	
-	private static IEduData eduData = new EduData();
+	private static IEduData eduData = EduDataFactory.Create();
 
 	public static String get(String className) {
 		return eduData.getSyllabus(className);

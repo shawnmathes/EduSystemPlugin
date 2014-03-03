@@ -2,12 +2,12 @@ package DomainServices;
 
 import java.util.ArrayList;
 
+import edusystemplugin.extensions.EduDataFactory;
 import edusystemplugin.extensions.IEduData;
-import Operation.EduData;
 
 public class StudentClassService {
 
-	private static IEduData eduData = new EduData();
+	private static IEduData eduData = EduDataFactory.Create();
 
 	public static ArrayList<String> getClassList() {
 		return eduData.getStudentEnrollList();
