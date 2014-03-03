@@ -185,8 +185,9 @@ public class StudentGUI extends JDialog implements ActionListener {
 
 					String statement = studentIDText.getText().toString() + ":"
 							+ courseEntry;
+					StudentEnrollList.add(statement);
 					WriteFile writeobj = new WriteFile();
-					writeobj.append(statement, filename);
+					writeobj.write(StudentEnrollList, filename);
 					ConfirmationBox confirmation = new ConfirmationBox(
 							new JFrame(), "Success Message",
 							"Course Added Successfully");
@@ -235,7 +236,7 @@ public class StudentGUI extends JDialog implements ActionListener {
 				return;
 			}
 
-			File fileSyllabus = new File(courseEntry);
+			File fileSyllabus = new File(Configuration.getDataRoot() + courseEntry);
 			if (!fileSyllabus.exists()) {
 				WarningBox noSyllabusWarning = new WarningBox(new JFrame(),
 						"No Syllabus Warning",

@@ -144,8 +144,9 @@ public class AdminGUI extends JDialog implements ActionListener {
 			}
 
 			if (checkFlag == 0) {
+				currentClassList.add(area.getText().toString());
 				WriteFile writefile = new WriteFile();
-				writefile.append(area.getText().toString(), commonFilename);
+				writefile.write(currentClassList, commonFilename);
 
 				ReadFile givevalue = new ReadFile();
 				ArrayList<String> refreshlist = new ArrayList<String>();
