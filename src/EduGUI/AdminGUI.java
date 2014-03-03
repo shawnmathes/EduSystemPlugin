@@ -36,6 +36,7 @@ import Operation.CommonClassData;
 import Operation.Configuration;
 import Operation.ReadFile;
 import Operation.StudentClassData;
+import Operation.SyllabusData;
 import Operation.WriteFile;
 
 public class AdminGUI extends JDialog implements ActionListener {
@@ -166,10 +167,8 @@ public class AdminGUI extends JDialog implements ActionListener {
 				return;
 			} else {
 				// if such class has syllabus, delete it
-				File syllabus = new File(selectedCourse);
-				if (syllabus.exists()) {
-					syllabus.delete();
-				}
+				SyllabusData syllabusData = new SyllabusData();
+				syllabusData.delete(selectedCourse);
 
 				// Update info into current common class list
 				ArrayList<String> currentList = commonClassData.getList();

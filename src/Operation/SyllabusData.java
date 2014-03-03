@@ -23,6 +23,13 @@ public class SyllabusData {
 			return "";
 		}
 	}
+	
+	public void delete(String className) {
+		File syllabus = new File(className);
+	    if(syllabus.exists()){
+	    	syllabus.delete();
+	    }
+	}
 
 	public void save(String className, String syllabus) {
 		String filename = Configuration.getDataRoot() + className;

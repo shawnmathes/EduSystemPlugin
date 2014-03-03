@@ -33,6 +33,7 @@ import Exception.WarningBox;
 import Operation.Configuration;
 import Operation.ReadFile;
 import Operation.StudentClassData;
+import Operation.SyllabusData;
 import Operation.WriteFile;
 
 public class StudentGUI extends JDialog implements ActionListener {
@@ -233,13 +234,14 @@ public class StudentGUI extends JDialog implements ActionListener {
 				return;
 			}
 
-			File fileSyllabus = new File(Configuration.getDataRoot() + courseEntry);
-			if (!fileSyllabus.exists()) {
+			SyllabusData syllabusData = new SyllabusData();
+			String syllabus = syllabusData.get(courseEntry);
+			if (syllabus.length() == 0) {
 				WarningBox noSyllabusWarning = new WarningBox(new JFrame(),
 						"No Syllabus Warning",
 						"This class does not have syllabus yet");
 				return;
-			} else if (fileSyllabus.exists()) {
+			} else {
 				ViewSyllabusGUI dlg = new ViewSyllabusGUI(new JFrame(),
 						"ViewSyllabus", courseEntry);
 
