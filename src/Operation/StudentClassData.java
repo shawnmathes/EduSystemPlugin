@@ -18,7 +18,7 @@ public class StudentClassData {
 
 	public ArrayList<String> getClassList() {
 		ReadFile readobj = new ReadFile();
-		return readobj.ReadFile(studentfile);
+		return readobj.read(studentfile);
 	}
 
 	public ArrayList<String> viewRoster(String className) {

@@ -9,7 +9,7 @@ public class CommonClassData {
 
 	public ArrayList<String> getList() {
 		ReadFile readfile = new ReadFile();
-		return readfile.ReadFile(commonfilelist);
+		return readfile.read(commonfilelist);
 	}
 
 	public void update(ArrayList<String> classList) {

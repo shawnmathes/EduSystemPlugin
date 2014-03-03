@@ -11,7 +11,7 @@ public class ReadFile {
 
 	ArrayList<String> StudentEnrollList = new ArrayList<String>();
 
-	public ArrayList<String> ReadFile(String filename) {
+	public ArrayList<String> read(String filename) {
 
 		File file = new File(filename);
 

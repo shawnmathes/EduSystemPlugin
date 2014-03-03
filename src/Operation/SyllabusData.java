@@ -10,7 +10,7 @@ public class SyllabusData {
 		File fileSyllabus = new File(filename);
 		if (fileSyllabus.exists()) {
 			ReadFile readfile = new ReadFile();
-			ArrayList<String> syllabusInfo = readfile.ReadFile(filename);
+			ArrayList<String> syllabusInfo = readfile.read(filename);
 
 			String set = "";
 			for (int i = 0; i < syllabusInfo.size(); i++) {
