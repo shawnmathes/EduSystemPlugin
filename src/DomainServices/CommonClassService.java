@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import Operation.CommonClassData;
+import Operation.EduData;
 
 public class CommonClassService {
 
-	private static CommonClassData commonClassData = new CommonClassData();
+	private static EduData eduData = new EduData();
 
 	public static ArrayList<String> getList() {
-		return commonClassData.getList();
+		return eduData.getClassList();
 	}
 
 	public static void addClass(String className) throws WarningException {
@@ -48,7 +48,7 @@ public class CommonClassService {
 		}
 
 		currentClassList.add(className);
-		commonClassData.update(currentClassList);
+		eduData.updateClassList(currentClassList);
 	}
 
 	public static void deleteClass(String className) throws WarningException {
@@ -61,7 +61,7 @@ public class CommonClassService {
 		SyllabusService.delete(className);
 
 		// Update info into current common class list
-		ArrayList<String> currentList = commonClassData.getList();
+		ArrayList<String> currentList = eduData.getClassList();
 
 		for (int k = 0; k < currentList.size(); k++) {
 			if (className.equals(currentList.get(k))) {
@@ -70,7 +70,7 @@ public class CommonClassService {
 			}
 		}
 
-		commonClassData.update(currentList);
+		eduData.updateClassList(currentList);
 
 		// Update info to student info file
 		StudentClassService.dropClassForAllStudents(className);

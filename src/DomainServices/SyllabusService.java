@@ -1,21 +1,21 @@
 package DomainServices;
 
-import Operation.SyllabusData;
+import Operation.EduData;
 
 public class SyllabusService {
 	
-	private static SyllabusData syllabusData = new SyllabusData();
+	private static EduData eduData = new EduData();
 
 	public static String get(String className) {
-		return syllabusData.get(className);
+		return eduData.getSyllabus(className);
 	}
 
 	public static void delete(String className) {
-		syllabusData.delete(className);
+		eduData.deleteSyllabus(className);
 	}
 
 	public static void save(String className, String syllabus) {
-		syllabusData.save(className, syllabus);
+		eduData.updateSyllabus(className, syllabus);
 	}
 	
 }

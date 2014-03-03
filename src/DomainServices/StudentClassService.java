@@ -2,19 +2,18 @@ package DomainServices;
 
 import java.util.ArrayList;
 
-import Operation.StudentClassData;
+import Operation.EduData;
 
 public class StudentClassService {
 
-	private static StudentClassData studentClassData = new StudentClassData();
+	private static EduData eduData = new EduData();
 
 	public static ArrayList<String> getClassList() {
-		return studentClassData.getClassList();
+		return eduData.getStudentEnrollList();
 	}
 	
 	public static String[] getClassList(String studentID) {
-		StudentClassData studentClassData = new StudentClassData();
-		ArrayList<String> stuInfo = studentClassData.getClassList();
+		ArrayList<String> stuInfo = getClassList();
 		for (int i = 0; i < stuInfo.size(); i++) {
 			String[] temp = stuInfo.get(i).split(":");
 			String id = temp[0];
@@ -95,7 +94,7 @@ public class StudentClassService {
 							String updateString = array[0] + ":"
 									+ classesString;
 							studentEnrollList.set(i, updateString);
-							studentClassData.update(studentEnrollList);
+							eduData.updateStudentEnrollList(studentEnrollList);
 							return;
 					}
 				}
@@ -105,19 +104,18 @@ public class StudentClassService {
 
 				String statement = studentID + ":" + className;
 				studentEnrollList.add(statement);
-				studentClassData.update(studentEnrollList);
+				eduData.updateStudentEnrollList(studentEnrollList);
 			}
 
 		} else {
 			String statement = studentID + ":" + className;
 			studentEnrollList.add(statement);
-			studentClassData.update(studentEnrollList);
+			eduData.updateStudentEnrollList(studentEnrollList);
 		}
 	}
 	
 	public static void dropClass(String studentID, String className) {
-		StudentClassData studentClassData = new StudentClassData();
-		ArrayList<String> stuInfo2 = studentClassData.getClassList();
+		ArrayList<String> stuInfo2 = getClassList();
 		for (int j = 0; j < stuInfo2.size(); j++) {
 			String[] temp = stuInfo2.get(j).split(":");
 			String id = temp[0];
@@ -153,11 +151,11 @@ public class StudentClassService {
 		}
 
 		// Update the record file.
-		studentClassData.update(stuInfo2);
+		eduData.updateStudentEnrollList(stuInfo2);
 	}
 	
 	public static void dropClassForAllStudents(String className) {
-		ArrayList<String> stuInfo2 = studentClassData.getClassList();
+		ArrayList<String> stuInfo2 = getClassList();
 		for (int j = 0; j < stuInfo2.size(); j++) {
 			String id = "";
 			if (!stuInfo2.get(j).equals("")) {
@@ -198,7 +196,7 @@ public class StudentClassService {
 				}
 
 				stuInfo2.set(j, update);
-				studentClassData.update(stuInfo2);
+				eduData.updateStudentEnrollList(stuInfo2);
 			}
 		}
 	}
