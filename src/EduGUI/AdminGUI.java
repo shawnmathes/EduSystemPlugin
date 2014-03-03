@@ -147,7 +147,7 @@ public class AdminGUI extends JDialog implements ActionListener {
 				currentClassList.add(area.getText().toString());
 				commonClassData.update(currentClassList);
 
-				list.setListData(commonClassData.getListAsArray());
+				list.setListData(getClassListAsArray());
 
 				area.setText("");
 				ConfirmationBox confirmation = new ConfirmationBox(
@@ -183,7 +183,7 @@ public class AdminGUI extends JDialog implements ActionListener {
 
 				commonClassData.update(currentList);
 
-				list.setListData(commonClassData.getListAsArray());
+				list.setListData(getClassListAsArray());
 
 				ConfirmationBox confirmation = new ConfirmationBox(
 						new JFrame(), "Success Message",
@@ -243,6 +243,12 @@ public class AdminGUI extends JDialog implements ActionListener {
 
 		}
 
+	}
+	
+	private String[] getClassListAsArray() {
+		CommonClassData commonClassData = new CommonClassData();
+		ArrayList<String> commonfilelistArray = commonClassData.getList();
+		return commonfilelistArray.toArray(new String[commonfilelistArray.size()]);
 	}
 
 	private class SelectionHandler implements ListSelectionListener {

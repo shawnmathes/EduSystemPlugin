@@ -106,15 +106,10 @@ public class MainGUI extends JFrame implements ActionListener {
 
 	}
 
-	public void actionPerformed1(ActionEvent e) {
-
-		System.exit(0);
-	}
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		CommonClassData commonClassData = new CommonClassData();
-		String[] startInit = commonClassData.getListAsArray();
+		String[] startInit = getClassListAsArray();
 		
 		if (e.getSource() == Button) {
 			System.out.println("you have chosen student option");
@@ -143,6 +138,12 @@ public class MainGUI extends JFrame implements ActionListener {
 
 		}
 
+	}
+	
+	private String[] getClassListAsArray() {
+		CommonClassData commonClassData = new CommonClassData();
+		ArrayList<String> commonfilelistArray = commonClassData.getList();
+		return commonfilelistArray.toArray(new String[commonfilelistArray.size()]);
 	}
 
 }

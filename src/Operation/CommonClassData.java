@@ -20,11 +20,6 @@ public class CommonClassData {
 		ReadFile readfile = new ReadFile();
 		return readfile.ReadFile(commonfilelist);
 	}
-
-	public String[] getListAsArray() {
-		ArrayList<String> commonfilelistArray = getList();
-		return commonfilelistArray.toArray(new String[commonfilelistArray.size()]);
-	}
 	
 	public void update(ArrayList<String> classList) {
 		WriteFile writefile = new WriteFile();

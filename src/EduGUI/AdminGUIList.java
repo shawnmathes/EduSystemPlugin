@@ -101,7 +101,7 @@ public class AdminGUIList extends JDialog implements ActionListener {
 
 				commonClassData.update(currentList);
 
-				list.setListData(commonClassData.getListAsArray());
+				list.setListData(getClassListAsArray());
 
 				// Update info to student info file
 				StudentClassData studentClassData = new StudentClassData();
@@ -156,6 +156,12 @@ public class AdminGUIList extends JDialog implements ActionListener {
 
 		}
 
+	}
+	
+	private String[] getClassListAsArray() {
+		CommonClassData commonClassData = new CommonClassData();
+		ArrayList<String> commonfilelistArray = commonClassData.getList();
+		return commonfilelistArray.toArray(new String[commonfilelistArray.size()]);
 	}
 
 	private class SelectionHandler implements ListSelectionListener {
