@@ -26,7 +26,6 @@ public class AdminGUIList extends JDialog implements ActionListener {
 	JList list;
 	JButton DeleteBtn;
 
-
 	ArrayList<String> stuInfo = new ArrayList<String>();
 	ArrayList<String> stuInfo2 = new ArrayList<String>();
 	String msg = "";
@@ -144,11 +143,12 @@ public class AdminGUIList extends JDialog implements ActionListener {
 		}
 
 	}
-	
+
 	private String[] getClassListAsArray() {
 		CommonClassData commonClassData = new CommonClassData();
 		ArrayList<String> commonfilelistArray = commonClassData.getList();
-		return commonfilelistArray.toArray(new String[commonfilelistArray.size()]);
+		return commonfilelistArray.toArray(new String[commonfilelistArray
+				.size()]);
 	}
 
 	private class SelectionHandler implements ListSelectionListener {

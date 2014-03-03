@@ -24,7 +24,7 @@ public class EditSyllabusGUI extends JDialog implements ActionListener {
 
 	ArrayList<String> syllabusInfo = new ArrayList<String>();
 	ArrayList<String> stuInfo2 = new ArrayList<String>();
-	
+
 	String className;
 
 	public EditSyllabusGUI(JFrame parent, String title, String className) {
@@ -33,7 +33,7 @@ public class EditSyllabusGUI extends JDialog implements ActionListener {
 			Dimension parentSize = parent.getSize();
 			Point p = parent.getLocation();
 		}
-		
+
 		this.className = className;
 
 		// Add button
@@ -55,7 +55,7 @@ public class EditSyllabusGUI extends JDialog implements ActionListener {
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		pack();
 		setBounds(200, 200, 400, 400);
-		
+
 		SyllabusData syllabusData = new SyllabusData();
 		area.setText(syllabusData.get(className));
 		setVisible(true);

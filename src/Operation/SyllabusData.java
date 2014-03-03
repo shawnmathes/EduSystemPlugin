@@ -18,17 +18,16 @@ public class SyllabusData {
 			}
 
 			return set;
-		}
-		else {
+		} else {
 			return "";
 		}
 	}
-	
+
 	public void delete(String className) {
 		File syllabus = new File(className);
-	    if(syllabus.exists()){
-	    	syllabus.delete();
-	    }
+		if (syllabus.exists()) {
+			syllabus.delete();
+		}
 	}
 
 	public void save(String className, String syllabus) {

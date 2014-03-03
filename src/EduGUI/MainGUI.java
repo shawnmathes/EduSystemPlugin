@@ -68,7 +68,8 @@ public class MainGUI extends JFrame implements ActionListener {
 		closePanel.add(Button2);
 		closePanel.add(Button3);
 
-		File pic = new File("C:\\Users\\Shawn Mathes\\workspace\\EduSystemPlugin\\umkc.jpg");
+		File pic = new File(
+				"C:\\Users\\Shawn Mathes\\workspace\\EduSystemPlugin\\umkc.jpg");
 
 		Icon icon = new ImageIcon(pic.toString());
 
@@ -96,7 +97,7 @@ public class MainGUI extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		CommonClassData commonClassData = new CommonClassData();
 		String[] startInit = getClassListAsArray();
-		
+
 		if (e.getSource() == Button) {
 			System.out.println("you have chosen student option");
 			JFrame frame = new JFrame("Student Access");
@@ -125,11 +126,12 @@ public class MainGUI extends JFrame implements ActionListener {
 		}
 
 	}
-	
+
 	private String[] getClassListAsArray() {
 		CommonClassData commonClassData = new CommonClassData();
 		ArrayList<String> commonfilelistArray = commonClassData.getList();
-		return commonfilelistArray.toArray(new String[commonfilelistArray.size()]);
+		return commonfilelistArray.toArray(new String[commonfilelistArray
+				.size()]);
 	}
 
 }

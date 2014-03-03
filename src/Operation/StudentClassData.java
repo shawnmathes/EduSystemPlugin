@@ -6,7 +6,7 @@ public class StudentClassData {
 
 	private String studentfile = Configuration.getDataRoot()
 			+ "studentManageFile.txt";
-	
+
 	public void update(ArrayList<String> studentEnrollList) {
 		WriteFile writeobj = new WriteFile();
 		writeobj.write(studentEnrollList, studentfile);
@@ -15,7 +15,7 @@ public class StudentClassData {
 	public ArrayList<String> getClassList(String studentID) {
 		return new ArrayList<String>();
 	}
-	
+
 	public ArrayList<String> getClassList() {
 		ReadFile readobj = new ReadFile();
 		return readobj.ReadFile(studentfile);

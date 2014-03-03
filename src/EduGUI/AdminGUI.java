@@ -86,7 +86,7 @@ public class AdminGUI extends JDialog implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		CommonClassData commonClassData = new CommonClassData();
-		
+
 		if (e.getSource() == AddBtn) {
 			System.out.println("you have chosen Add Class Button");
 
@@ -230,11 +230,12 @@ public class AdminGUI extends JDialog implements ActionListener {
 		}
 
 	}
-	
+
 	private String[] getClassListAsArray() {
 		CommonClassData commonClassData = new CommonClassData();
 		ArrayList<String> commonfilelistArray = commonClassData.getList();
-		return commonfilelistArray.toArray(new String[commonfilelistArray.size()]);
+		return commonfilelistArray.toArray(new String[commonfilelistArray
+				.size()]);
 	}
 
 	private class SelectionHandler implements ListSelectionListener {
