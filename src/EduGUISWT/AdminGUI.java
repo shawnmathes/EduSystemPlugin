@@ -13,6 +13,7 @@ import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
+import edusystemplugin.extensions.LoggingService;
 import DomainServices.CommonClassService;
 import DomainServices.WarningException;
 
@@ -55,7 +56,7 @@ public class AdminGUI extends EduDialog {
 		addClassButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				System.out.println("Add Class pressed");
+				LoggingService.writeDebug("Add Class pressed");
 				try {
 					CommonClassService.addClass(addCourseText.getText()
 							.toString());
@@ -77,7 +78,7 @@ public class AdminGUI extends EduDialog {
 		myClassListButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				System.out.println("Delete Class pressed");
+				LoggingService.writeDebug("Delete Class pressed");
 				String[] selections = courseList.getSelection();
 				String courseEntry = selections.length == 0 ? ""
 						: selections[0];

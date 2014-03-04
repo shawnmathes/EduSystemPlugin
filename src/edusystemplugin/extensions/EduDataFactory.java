@@ -7,7 +7,6 @@ import org.eclipse.core.runtime.Platform;
 public class EduDataFactory {
 
 	public static IEduData Create() {
-		System.out.println("Evaluating extension");
 		IConfigurationElement[] config = Platform.getExtensionRegistry()
 				.getConfigurationElementsFor("edusystemplugin.data");
 		try {
@@ -17,12 +16,10 @@ public class EduDataFactory {
 					return (IEduData) o;
 				}
 			}
-			
-			System.out.println("Couldn't find data extension.");
-			return null;
 		} catch (CoreException ex) {
-			System.out.println(ex.getMessage());
-			return null;
+
 		}
+		
+		return null;
 	}
 }

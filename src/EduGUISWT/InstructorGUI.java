@@ -10,6 +10,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Shell;
 
+import edusystemplugin.extensions.LoggingService;
 import DomainServices.StudentClassService;
 
 public class InstructorGUI extends EduDialog {
@@ -44,7 +45,7 @@ public class InstructorGUI extends EduDialog {
 		viewRosterButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				System.out.println("View Roster pressed");
+				LoggingService.writeDebug("View Roster pressed");
 				String[] selections = courseList.getSelection();
 				String courseEntry = selections.length == 0 ? ""
 						: selections[0];
@@ -65,7 +66,7 @@ public class InstructorGUI extends EduDialog {
 		editSyllabusButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				System.out.println("Edit Syllabus pressed");
+				LoggingService.writeDebug("Edit Syllabus pressed");
 				String[] selections = courseList.getSelection();
 				String courseEntry = selections.length == 0 ? ""
 						: selections[0];

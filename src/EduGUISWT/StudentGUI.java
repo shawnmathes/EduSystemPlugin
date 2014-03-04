@@ -12,6 +12,7 @@ import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
+import edusystemplugin.extensions.LoggingService;
 import DomainServices.StudentClassService;
 import DomainServices.SyllabusService;
 import DomainServices.WarningException;
@@ -57,7 +58,7 @@ public class StudentGUI extends EduDialog {
 		addClassButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				System.out.println("Add Class pressed");
+				LoggingService.writeDebug("Add Class pressed");
 				String[] selections = courseList.getSelection();
 				String courseEntry = selections.length == 0 ? ""
 						: selections[0];
@@ -80,7 +81,7 @@ public class StudentGUI extends EduDialog {
 		myClassListButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				System.out.println("My Class List pressed");
+				LoggingService.writeDebug("My Class List pressed");
 				if (studentIDText.getText().toString().length() == 0) {
 					MessageDialog.openWarning(getParent(), "ID Warning",
 							"Please input ID");
@@ -103,7 +104,7 @@ public class StudentGUI extends EduDialog {
 		viewSyllabusButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				System.out.println("View Syllabus pressed");
+				LoggingService.writeDebug("View Syllabus pressed");
 				String[] selections = courseList.getSelection();
 				String courseEntry = selections.length == 0 ? ""
 						: selections[0];

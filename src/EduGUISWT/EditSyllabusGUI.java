@@ -9,6 +9,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
+import edusystemplugin.extensions.LoggingService;
 import DomainServices.SyllabusService;
 
 public class EditSyllabusGUI extends EduDialog {
@@ -48,7 +49,7 @@ public class EditSyllabusGUI extends EduDialog {
 		saveSyllabusButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				System.out.println("Save Syllabus pressed");
+				LoggingService.writeDebug("Save Syllabus pressed");
 				SyllabusService.save(SyllabusService.get(getCourseEntry()), syllabusText.getText()
 						.toString());
 				shell.close();
@@ -60,7 +61,7 @@ public class EditSyllabusGUI extends EduDialog {
 		cancelButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				System.out.println("Cancel pressed");
+				LoggingService.writeDebug("Cancel pressed");
 				shell.close();
 			}
 		});

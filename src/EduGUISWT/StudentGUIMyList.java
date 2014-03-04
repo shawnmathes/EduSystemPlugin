@@ -11,6 +11,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Shell;
 
+import edusystemplugin.extensions.LoggingService;
 import DomainServices.StudentClassService;
 
 public class StudentGUIMyList extends EduDialog {
@@ -53,7 +54,7 @@ public class StudentGUIMyList extends EduDialog {
 		dropClassButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				System.out.println("Drop Class pressed");
+				LoggingService.writeDebug("Drop Class pressed");
 				String[] selections = courseList.getSelection();
 				String courseEntry = selections.length == 0 ? ""
 						: selections[0];
