@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 
 import edusystemplugin.extensions.EduDataFactory;
 import edusystemplugin.extensions.IEduData;
+import edusystemplugin.extensions.LoggingService;
 
 public class CommonClassService {
 
@@ -50,6 +51,7 @@ public class CommonClassService {
 
 		currentClassList.add(className);
 		eduData.updateClassList(currentClassList);
+		LoggingService.writeAudit("Added class " + className);
 	}
 
 	public static void deleteClass(String className) throws WarningException {
@@ -72,6 +74,7 @@ public class CommonClassService {
 		}
 
 		eduData.updateClassList(currentList);
+		LoggingService.writeAudit("Deleted class " + className);
 
 		// Update info to student info file
 		StudentClassService.dropClassForAllStudents(className);

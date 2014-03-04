@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import edusystemplugin.extensions.EduDataFactory;
 import edusystemplugin.extensions.IEduData;
+import edusystemplugin.extensions.LoggingService;
 
 public class StudentClassService {
 
@@ -96,6 +97,7 @@ public class StudentClassService {
 									+ classesString;
 							studentEnrollList.set(i, updateString);
 							eduData.updateStudentEnrollList(studentEnrollList);
+							LoggingService.writeAudit("Added class " + className + " for student ID " + studentID);
 							return;
 					}
 				}
@@ -106,12 +108,14 @@ public class StudentClassService {
 				String statement = studentID + ":" + className;
 				studentEnrollList.add(statement);
 				eduData.updateStudentEnrollList(studentEnrollList);
+				LoggingService.writeAudit("Added class " + className + " for student ID " + studentID);
 			}
 
 		} else {
 			String statement = studentID + ":" + className;
 			studentEnrollList.add(statement);
 			eduData.updateStudentEnrollList(studentEnrollList);
+			LoggingService.writeAudit("Added class " + className + " for student ID " + studentID);
 		}
 	}
 	
@@ -153,6 +157,7 @@ public class StudentClassService {
 
 		// Update the record file.
 		eduData.updateStudentEnrollList(stuInfo2);
+		LoggingService.writeAudit("Dropped class " + className + " for student ID " + studentID);
 	}
 	
 	public static void dropClassForAllStudents(String className) {
@@ -198,6 +203,7 @@ public class StudentClassService {
 
 				stuInfo2.set(j, update);
 				eduData.updateStudentEnrollList(stuInfo2);
+				LoggingService.writeAudit("Dropped class " + className + " for all students.");
 			}
 		}
 	}
