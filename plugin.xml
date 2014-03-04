@@ -2,6 +2,7 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension-point id="edusystemplugin.data" name="EduSystem Plugin Data Adapter" schema="schema/edusystemplugin.data.exsd"/>
+   <extension-point id="edusystemplugin.logging" name="EduSystem Plugin Logging" schema="schema/edusystemplugin.logging.exsd"/>
 
    <extension
          point="org.eclipse.ui.commands">

@@ -12,6 +12,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 
+import edusystemplugin.extensions.LoggingService;
 import DomainServices.CommonClassService;
 
 public class MainGUI extends EduDialog {
@@ -45,7 +46,7 @@ public class MainGUI extends EduDialog {
 		studentButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				System.out.println("Student pressed");
+				LoggingService.writeLog("Student pressed");
 				StudentGUI dlg = new StudentGUI(getParent(), "Student Account",
 						getClassListAsArray());
 				dlg.open();
@@ -57,7 +58,7 @@ public class MainGUI extends EduDialog {
 		instructorButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				System.out.println("Instructor pressed");
+				LoggingService.writeLog("Instructor pressed");
 				InstructorGUI dlg = new InstructorGUI(getParent(),
 						"Instructor Account", getClassListAsArray());
 				dlg.open();
@@ -69,7 +70,7 @@ public class MainGUI extends EduDialog {
 		adminButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				System.out.println("Administrator pressed");
+				LoggingService.writeLog("Administrator pressed");
 				AdminGUI dlg = new AdminGUI(getParent(), "Admin Account",
 						getClassListAsArray());
 				dlg.open();
